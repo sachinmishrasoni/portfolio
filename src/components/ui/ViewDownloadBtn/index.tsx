@@ -3,15 +3,21 @@ import React from 'react'
 import { IconList } from '../../../utils/iconList'
 
 const ViewDownloadBtn = () => {
+    const resumeViewLink = 'https://drive.google.com/file/d/18J7xCAVRC6cso9Ahafe2dCtAzoA7LaTA/view?usp=sharing';
+    const resumeDownloadLink = 'https://drive.google.com/uc?export=download&id=18J7xCAVRC6cso9Ahafe2dCtAzoA7LaTA';
+
     const handleView = (e: React.MouseEvent) => {
-        e.stopPropagation() // Prevent event bubbling
-        console.log('View action triggered')
-        // Add your view logic here
+        e.stopPropagation()
+        window.open(resumeViewLink, '_blank');
     }
 
     const handleDownload = () => {
-        console.log('Download action triggered')
-        // Add your download logic here
+        const link = document.createElement('a');
+        link.href = resumeDownloadLink;
+        link.download = 'Sachin_Kumar_Resume.pdf'; // Optional: Suggests a filename
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
     return (
         <Box sx={{

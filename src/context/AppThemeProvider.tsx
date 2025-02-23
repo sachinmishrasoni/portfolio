@@ -10,7 +10,7 @@ const AppThemeProvider = ({ children }: { children: React.ReactNode }) => {
             mode: 'dark',
             // background: { default: '#ffffff', paper: '#F7F7F7' },
 
-            // background: { default: '#040D12', paper: '#040D12' },
+            background: { default: '#040D12', paper: '#040D12' },
             // primary: {
             //     main: '#FFD95F'
             // }

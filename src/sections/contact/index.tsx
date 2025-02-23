@@ -1,9 +1,8 @@
-import { alpha, Box, Button, Container, Divider, Grid2, IconButton, Stack, Typography, useTheme } from '@mui/material'
+import { alpha, Box, Button, Container, Divider, Grid2, IconButton, Stack, Typography } from '@mui/material'
 import SectionHeader from '../../components/ui/SectionHeader'
 import { IconList } from '../../utils/iconList'
-import CustomTextField from '../../components/ui/CustomTextField'
 import SocialMediaBtns from '../../components/ui/SocialMediaBtns'
-import SpotlightPaper from '../../components/ui/SpotlightPaper'
+import ContactForm from './ContactForm'
 
 const contactData = [
     {
@@ -47,7 +46,18 @@ const contactData = [
 ]
 
 const Contact = () => {
-    const theme = useTheme();
+
+    const handleCopy = (text: string) => {
+        navigator.clipboard.writeText(text)
+            .then(() => {
+                console.log(`Copied to clipboard: ${text}`);
+                // Optional: Add a visual feedback like a toast (requires additional setup)
+                alert(`Copied: ${text}`); // Temporary feedback
+            })
+            .catch((err) => {
+                console.error('Failed to copy:', err);
+            });
+    };
     return (
         <Box id="contact" data-section width={'100%'} minHeight={'100vh'} position={'relative'} overflow={'hidden'}
             sx={{
@@ -69,67 +79,7 @@ const Contact = () => {
                         </Box>
                     </Grid2>
                     <Grid2 size={{ xs: 12, sm: 6, md: 6 }} order={{ xs: 2, sm: 3, md: 3 }}>
-                        <SpotlightPaper
-                            spotlightColor={alpha(theme.palette.primary.main, 0.25)}
-                            sx={{
-                                p: 2,
-                                borderRadius: 2,
-                                position: 'relative',
-                                boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-                                overflow: 'hidden',
-                                zIndex: 5
-                            }}
-                        >
-                            <Typography variant='h6' color='text.secondary'>Send me a message</Typography>
-                            <Box component={'form'} sx={{
-                                mt: 2,
-                                display: 'flex',
-                                flexDirection: 'column',
-                                gap: 2,
-                            }}>
-                                <CustomTextField
-                                    required
-                                    placeholder='Name'
-                                    prefixIcon={<IconList.user fontSize={20} />}
-                                />
-                                <Stack direction={{ xs: 'column', sm: 'row' }} gap={2}>
-                                    <CustomTextField
-                                        required
-                                        placeholder='Email'
-                                        type='email'
-                                        prefixIcon={<IconList.email fontSize={20} />}
-                                    />
-                                    <CustomTextField
-                                        required
-                                        placeholder='Phone' type='tel'
-                                        prefixIcon={<IconList.phone fontSize={20} />}
-                                    />
-                                </Stack>
-                                <CustomTextField
-                                    required
-                                    placeholder='Subject'
-                                    prefixIcon={<IconList.user fontSize={20} />}
-                                />
-                                <CustomTextField
-                                    required
-                                    placeholder='Message'
-                                    multiline
-                                    rows={5}
-                                />
-                                <Button variant='contained' type='submit'>Submit</Button>
-                            </Box>
-                            <Box sx={{
-                                position: 'absolute',
-                                top: '-30px',
-                                right: '-20px',
-                                borderRadius: '50%',
-                                color: 'primary.light',
-                                zIndex: -1,
-                                opacity: theme => theme.palette.mode === 'dark' ? 0.02 : 0.05
-                            }}>
-                                <IconList.telegram fontSize={300} />
-                            </Box>
-                        </SpotlightPaper>
+                        <ContactForm />
                     </Grid2>
                     <Grid2
                         size={{ xs: 12, sm: 6, md: 6 }}
@@ -189,10 +139,14 @@ const Contact = () => {
                                             alignItems: 'center',
                                             gap: 1
                                         }}>
-                                            <Button variant='outlined' size='small'
-                                                sx={{ borderRadius: '25px', boxShadow: 'none' }}
-                                            >Send</Button>
-                                            <IconButton color='primary'>
+                                            {
+                                                item.title !== 'Address' && (
+                                                    <Button variant='outlined' size='small'
+                                                        sx={{ borderRadius: '25px', boxShadow: 'none' }}
+                                                    >Send</Button>
+                                                )
+                                            }
+                                            <IconButton color='primary' onClick={() => handleCopy(item.content)}>
                                                 <IconList.copy fontSize={25} />
                                             </IconButton>
                                         </Box>

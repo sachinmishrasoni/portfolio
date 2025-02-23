@@ -5,6 +5,7 @@ import ViewDownloadBtn from '../../components/ui/ViewDownloadBtn';
 import { TypeAnimation } from 'react-type-animation';
 import Mouse from '../../components/animated/Mouse';
 import BlobDiv from '../../components/common/BlobDiv';
+import { hireMe } from '../../utils/common';
 // import blobDiv from '/svg/blobDiv.svg'
 
 const Hero = () => {
@@ -13,7 +14,7 @@ const Hero = () => {
         <Box
             id="home"
             data-section
-            height={'100vh'}
+            minHeight={'100vh'}
             position={'relative'}
             overflow={'hidden'}
             sx={{
@@ -47,7 +48,7 @@ const Hero = () => {
                     pointerEvents: 'none'
                 }}
             >
-                <Container sx={{ height: '100%', display: 'flex', alignItems: 'center' }}>
+                <Container sx={{ py: 5, height: '100%', display: 'flex', alignItems: 'center' }}>
                     <Grid container spacing={2} sx={{ alignItems: 'center' }}>
                         {/* Image Grid - First on mobile */}
                         <Grid item xs={12} md={4} order={{ xs: 1, md: 2 }}>
@@ -109,6 +110,7 @@ const Hero = () => {
                                     <Button
                                         variant='contained'
                                         sx={{ borderRadius: '25px', boxShadow: 'none' }}
+                                        onClick={() => hireMe()}
                                     >
                                         Hire me
                                     </Button>
@@ -151,14 +153,14 @@ const Hero = () => {
             /> */}
 
             <BlobDiv
-              sx={{
-                position: 'absolute',
-                top: '50%',
-                right: { xs: '-400px', sm: '-700px', md: '-500px', lg: '-700px' },
-                transform: 'translate(-50%, -50%) rotate(30deg)',
-                zIndex: 0,
-                opacity: 0.1
-              }}
+                sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    right: { xs: '-400px', sm: '-700px', md: '-500px', lg: '-700px' },
+                    transform: 'translate(-50%, -50%) rotate(30deg)',
+                    zIndex: 0,
+                    opacity: 0.1
+                }}
             />
 
             <Box sx={{
