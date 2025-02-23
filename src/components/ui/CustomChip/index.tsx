@@ -1,7 +1,6 @@
 import React from 'react';
 import { Chip } from '@mui/material';
-import { alpha, useTheme } from '@mui/material/styles';
-import { SvgIconProps } from '@mui/material/SvgIcon';
+import { useTheme } from '@mui/material/styles';
 
 interface CustomChipProps {
     label: any;
