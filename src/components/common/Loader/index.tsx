@@ -99,41 +99,37 @@ const Loader = () => {
                 ))}
             </Typography>
 
-            <Box sx={{
-                position: 'absolute',
-                bottom: 25,
-            }}>
-                <Typography
-                    variant="caption"
-                    textAlign={'center'}
-                    color="text.secondary"
-                    component={'p'}
-                // initial={{ scale: 0, opacity: 0 }}
-                // animate={{ scale: 1, opacity: 1 }}
-                // transition={{
-                //     duration: 1,
-                //     ease: 'easeInOut',
-                // }}
+            <Typography
+                variant="caption"
+                textAlign={'center'}
+                color="text.secondary"
+                component={'p'}
+                mt={3}
+            // initial={{ scale: 0, opacity: 0 }}
+            // animate={{ scale: 1, opacity: 1 }}
+            // transition={{
+            //     duration: 1,
+            //     ease: 'easeInOut',
+            // }}
+            >
+                Designed with
+                <motion.span
+                    initial={{ scale: 1 }}
+                    animate={{ scale: 1.4 }} // Two keyframes
+                    transition={{
+                        type: 'spring',
+                        stiffness: 500,
+                        damping: 10,
+                        repeat: Infinity,
+                        repeatType: 'reverse', // Beats back and forth
+                        repeatDelay: 0.8,
+                    }}
+                    style={{ display: 'inline-block', marginLeft: '5px', marginRight: '5px' }}
                 >
-                    Designed with
-                    <motion.span
-                        initial={{ scale: 1 }}
-                        animate={{ scale: 1.4 }} // Two keyframes
-                        transition={{
-                            type: 'spring',
-                            stiffness: 500,
-                            damping: 10,
-                            repeat: Infinity,
-                            repeatType: 'reverse', // Beats back and forth
-                            repeatDelay: 0.8,
-                        }}
-                        style={{ display: 'inline-block', marginLeft: '5px', marginRight: '5px' }}
-                    >
-                        ❤️
-                    </motion.span>
-                    By SAM
-                </Typography>
-            </Box>
+                    ❤️
+                </motion.span>
+                By SAM
+            </Typography>
         </Box>
     );
 };
