@@ -1,17 +1,17 @@
 import { lazy, StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import AppThemeProvider from './context/AppThemeProvider.tsx'
+import ThemeProvider from './context/theme/themeProvider.tsx'
 import Loader from './components/common/Loader/index.tsx'
+import './index.css'
 
 const AppLazy = lazy(() => import('./App'))
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <AppThemeProvider>
+    <ThemeProvider>
       <Suspense fallback={<Loader />}>
         <AppLazy />
       </Suspense>
-    </AppThemeProvider>
+    </ThemeProvider>
   </StrictMode>,
 )

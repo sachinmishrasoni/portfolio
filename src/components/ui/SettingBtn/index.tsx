@@ -1,7 +1,9 @@
 import { IconButton, Paper } from '@mui/material'
 import { IconList } from '../../../utils/iconList'
+import { useAppTheme } from '../../../context/theme/themeProvider';
 
 const SettingBtn = () => {
+  const { dispatch } = useAppTheme();
   return (
     <Paper sx={{
         width: 75,
@@ -13,7 +15,7 @@ const SettingBtn = () => {
         borderRadius: '25px',
         zIndex: 50
     }}>
-        <IconButton color='primary'>
+        <IconButton color='primary' onClick={() => dispatch({ type: 'TOGGLE_MODE' })}>
             <IconList.settings className='spin' fontSize={25} />
         </IconButton>
     </Paper>
