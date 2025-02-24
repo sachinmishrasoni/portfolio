@@ -1,8 +1,10 @@
-import { createTheme, CssBaseline, responsiveFontSizes, ThemeProvider as MuiThemeProvider } from '@mui/material';
+import { createTheme, CssBaseline, responsiveFontSizes, ThemeProvider as MuiThemeProvider, AlertColor } from '@mui/material';
 import React, { useContext, useMemo, useReducer } from 'react';
 import { ThemeContextValue } from './type';
 import themeReducer from './themeReducer';
 import initialState from './initialState';
+import Toaster from '../../components/common/Toaster';
+import ConfirmationDialog from '../../components/common/ConfirmationDialog';
 
 const ThemeContext = React.createContext<ThemeContextValue | undefined>(
     undefined
@@ -23,11 +25,29 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         },
     })), [state.mode]);
 
+    const showToast = (message: string, severity: AlertColor = 'info') => {
+        dispatch({ type: 'SHOW_TOAST', payload: { message, severity } });
+    };
+
+    const hideToast = () => {
+        dispatch({ type: 'HIDE_TOAST' });
+    };
+
+    const showConfirmation = (title: string, message: string, onConfirm: () => void) => {
+        dispatch({ type: 'SHOW_CONFIRMATION', payload: { title, message, onConfirm } });
+    };
+
+    const hideConfirmation = () => {
+        dispatch({ type: 'HIDE_CONFIRMATION' });
+    };
+
     return (
-        <ThemeContext.Provider value={{ state, dispatch }}>
+        <ThemeContext.Provider value={{ state, dispatch, showToast, hideToast, showConfirmation, hideConfirmation }}>
             <MuiThemeProvider theme={theme}>
                 <CssBaseline />
                 {children}
+                <Toaster />
+                <ConfirmationDialog />
             </MuiThemeProvider>
         </ThemeContext.Provider>
     )

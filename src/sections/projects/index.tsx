@@ -9,7 +9,7 @@ const Projects = () => {
                 background: theme => `linear-gradient(90deg, ${alpha(theme.palette.primary.main, 0.1)} 0%, ${theme.palette.background.default} 50%, ${alpha(theme.palette.primary.main, 0.05)} 100%)`,
             }}
         >
-            <Container sx={{ py: 5 }}>
+            <Container sx={{ py: 6 }}>
                 <SectionHeader title={'Projects'} subtitle={'My Work'} conunt={'04'} />
 
                 <Typography variant="body1" color="text.secondary" mt={2} sx={{ lineBreak: 'anywhere' }}>

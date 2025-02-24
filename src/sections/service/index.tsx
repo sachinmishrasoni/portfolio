@@ -6,12 +6,12 @@ import SpotlightPaper from '../../components/ui/SpotlightPaper'
 const Service = () => {
     const theme = useTheme();
     return (
-        <Box id="service" data-section minHeight={'100vh'} position={'relative'} overflow={'hidden'}
+        <Box id="service" data-section minHeight={'50vh'} position={'relative'} overflow={'hidden'}
             sx={{
                 background: theme => `linear-gradient(90deg, ${alpha(theme.palette.primary.main, 0.1)} 0%, ${theme.palette.background.default} 50%, ${alpha(theme.palette.primary.main, 0.05)} 100%)`,
             }}
         >
-            <Container sx={{ py: 5 }}>
+            <Container sx={{ py: 6 }}>
                 <SectionHeader title={'My Services'} subtitle={'What I Offer'} conunt={'03'} />
 
                 <Grid2 container spacing={2} mt={2}>

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { IconList } from '../../utils/iconList'; // Adjust path as needed
 import CustomTextField from '../../components/ui/CustomTextField'; // Adjust path as needed
 import SpotlightPaper from '../../components/ui/SpotlightPaper'; // Adjust path as needed
+import { useAppTheme } from '../../context/theme/themeProvider';
 
 // Regular Expressions
 const nameExp = /^[A-Za-z ]{2,50}$/;
@@ -12,6 +13,8 @@ const subExp = /^[A-Za-z0-9 ]{2,100}$/;
 
 const ContactForm = () => {
     const theme = useTheme();
+    const { showToast, showConfirmation } = useAppTheme();
+    const [loading, setLoading] = useState(false);
 
     // State for form inputs
     const [formData, setFormData] = useState({
@@ -100,16 +103,48 @@ const ContactForm = () => {
         setErrors((prev) => ({ ...prev, [name]: '' }));
     };
 
+    const confirmSubmit = async () => {
+        setLoading(true);
+        try {
+            const response = await fetch('https://formspree.io/f/xeqbplgd', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    Name: formData.name,
+                    Email: formData.email,
+                    Mobile: formData.phone,
+                    Subject: formData.subject,
+                    Message: formData.message,
+                }),
+            });
+
+            if (response.ok) {
+                showToast('Form submitted successfully!', 'success');
+                setFormData({ name: '', email: '', phone: '', subject: '', message: '' }); // Reset form
+            } else {
+                showToast('Form submission failed.', 'error');
+            }
+        } catch (error) {
+            showToast('Error submitting form.', 'error');
+            console.error('Error submitting form:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     // Handle form submission
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (validateForm()) {
-            console.log('Form submitted:', formData);
-            alert('Message sent! (This is a demo—just logged to console.)');
-            setFormData({ name: '', email: '', phone: '', subject: '', message: '' }); // Reset form
-            setErrors({ name: '', email: '', phone: '', subject: '', message: '' }); // Reset errors
+            showConfirmation(
+                'Confirm Submission',
+                'Are you sure you want to submit this form?',
+                confirmSubmit
+            );
         } else {
-            console.log('Validation failed');
+            showToast('Validation failed. Please check your inputs.', 'error');
         }
     };
 
@@ -193,8 +228,13 @@ const ContactForm = () => {
                     error={!!errors.message}
                     helperText={errors.message}
                 />
-                <Button variant="contained" type="submit" sx={{ borderRadius: 25 }}>
-                    Submit
+                <Button
+                    variant="contained"
+                    type="submit"
+                    sx={{ borderRadius: 25 }}
+                    disabled={loading}
+                >
+                    {loading ? 'Submitting...' : 'Submit'}
                 </Button>
             </Box>
             <Box

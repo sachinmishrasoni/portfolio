@@ -3,58 +3,46 @@ import SectionHeader from '../../components/ui/SectionHeader'
 import { IconList } from '../../utils/iconList'
 import SocialMediaBtns from '../../components/ui/SocialMediaBtns'
 import ContactForm from './ContactForm'
+import { useAppTheme } from '../../context/theme/themeProvider'
+import { sendEmail, sendTelegram, sendWhatsApp } from '../../utils/socialHandlers'
 
 const contactData = [
     {
         title: 'Address',
         icon: IconList.location,
         content: 'Karol Bagh, New Delhi, India',
-        onClick: () => {
-        }
+        onClick: ()=> console.log('clicked')
     },
-    // {
-    //     title: 'Phone',
-    //     icon: IconList.phone,
-    //     content: '+91 1234567890',
-    //     onClick: () => {
-    //     }
-    // },
     {
         title: 'Email',
         icon: IconList.email,
-        content: 'b9QJm@example.com',
-        onClick: () => {
-
-        }
+        content: 'sachunmishraf103@gmail.com',
+        onClick: sendEmail
     },
     {
         title: 'Whatsapp',
         icon: IconList.whatsapp,
-        content: '+91 1234567890',
-        onClick: () => {
-
-        }
+        content: '+91-7545823925',
+        onClick: sendWhatsApp
     },
     {
         title: 'Telegram',
         icon: IconList.telegram,
         content: '@sachinmishrasoni',
-        onClick: () => {
-
-        }
+        onClick: sendTelegram
     }
 ]
 
 const Contact = () => {
+    const { showToast } = useAppTheme();
 
     const handleCopy = (text: string) => {
         navigator.clipboard.writeText(text)
             .then(() => {
-                console.log(`Copied to clipboard: ${text}`);
-                // Optional: Add a visual feedback like a toast (requires additional setup)
-                alert(`Copied: ${text}`); // Temporary feedback
+                showToast(`Copied: ${text}`, 'success');
             })
             .catch((err) => {
+                alert(`Failed to copy: ${err}`);
                 console.error('Failed to copy:', err);
             });
     };
@@ -143,6 +131,7 @@ const Contact = () => {
                                                 item.title !== 'Address' && (
                                                     <Button variant='outlined' size='small'
                                                         sx={{ borderRadius: '25px', boxShadow: 'none' }}
+                                                        onClick={item.onClick || (() => { })}
                                                     >Send</Button>
                                                 )
                                             }
@@ -154,7 +143,7 @@ const Contact = () => {
                                 ))
                             }
                         </Stack>
-                        {/* <Divider sx={{ my: 3 }}>or</Divider> */}
+
                         <Box mt={2}>
                             <Typography variant='h6' mb={1}>Or, Connect with me on social networks:</Typography>
                             <SocialMediaBtns />

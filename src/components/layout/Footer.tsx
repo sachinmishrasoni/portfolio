@@ -1,5 +1,5 @@
-import { Box, Container, Grid, Typography, Link, IconButton, Tooltip, Stack } from '@mui/material';
-import { IconList } from '../../utils/iconList';
+import { Box, Container, Grid, Typography, Link, Tooltip, Stack } from '@mui/material';
+import SocialMediaBtns from '../ui/SocialMediaBtns';
 
 const FooterHeader = ({ title }: { title: string }) => (
     <Box display={'flex'}>
@@ -19,14 +19,6 @@ const FooterHeader = ({ title }: { title: string }) => (
 )
 const Footer = () => {
     const currentYear = new Date().getFullYear();
-
-    const socialLinks = [
-        { icon: <IconList.github />, url: 'https://github.com/yourusername' },
-        { icon: <IconList.linkedin />, url: 'https://linkedin.com/in/yourprofile' },
-        { icon: <IconList.twitter />, url: 'https://twitter.com/yourhandle' },
-        { icon: <IconList.facebook />, url: 'https://facebook.com/yourpage' },
-        { icon: <IconList.email />, url: 'mailto:youremail@example.com' },
-    ];
 
     const quickLinks = [
         { label: 'Home', url: '#home' },
@@ -129,10 +121,10 @@ const Footer = () => {
                             Karol Bagh, New Delhi, India
                         </Typography>
                         <Typography variant="body2" color="text.secondary" gutterBottom>
-                            Email: hello@example.com
+                            Email: sachinmishraf103@gmail.com
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            Phone: +91-7543823928
+                            Phone: +91-7545823925
                         </Typography>
                     </Grid>
 
@@ -143,20 +135,7 @@ const Footer = () => {
                         </Typography> */}
                         <FooterHeader title="Follow Me" />
                         <Box>
-                            {socialLinks.map((social, index) => (
-                                <IconButton
-                                    key={index}
-                                    href={social.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    sx={{
-                                        color: 'text.secondary',
-                                        '&:hover': { color: 'primary.main' }
-                                    }}
-                                >
-                                    {social.icon}
-                                </IconButton>
-                            ))}
+                            <SocialMediaBtns />
                         </Box>
                     </Grid>
                 </Grid>

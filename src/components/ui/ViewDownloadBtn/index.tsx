@@ -4,21 +4,31 @@ import { IconList } from '../../../utils/iconList'
 
 const ViewDownloadBtn = () => {
     const resumeViewLink = 'https://drive.google.com/file/d/18J7xCAVRC6cso9Ahafe2dCtAzoA7LaTA/view?usp=sharing';
-    const resumeDownloadLink = 'https://drive.google.com/uc?export=download&id=18J7xCAVRC6cso9Ahafe2dCtAzoA7LaTA';
+    // const resumeDownloadLink = 'https://drive.google.com/uc?export=download&id=18J7xCAVRC6cso9Ahafe2dCtAzoA7LaTA';
 
     const handleView = (e: React.MouseEvent) => {
         e.stopPropagation()
         window.open(resumeViewLink, '_blank');
     }
 
+    // const handleDownload = () => {
+    //     const link = document.createElement('a');
+    //     link.href = resumeDownloadLink;
+    //     link.download = 'Sachin_Kumar_Resume.pdf'; // Optional: Suggests a filename
+    //     document.body.appendChild(link);
+    //     link.click();
+    //     document.body.removeChild(link);
+    // }
+
     const handleDownload = () => {
         const link = document.createElement('a');
-        link.href = resumeDownloadLink;
-        link.download = 'Sachin_Kumar_Resume.pdf'; // Optional: Suggests a filename
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
+        link.href = '/docs/sachin_cv'; // Path to your CV file
+        link.download = 'Sachin_Resume.pdf'; // File name to be saved as
+        link.target = '_blank'; // Open in a new tab/window
+        document.body.appendChild(link); // Append link to body (necessary for some browsers)
+        link.click(); // Trigger the download
+        document.body.removeChild(link); // Clean up by removing the link from the DOM
+    };
     return (
         <Box sx={{
             position: 'relative',

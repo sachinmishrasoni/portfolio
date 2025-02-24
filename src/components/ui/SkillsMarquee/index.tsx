@@ -47,7 +47,7 @@ const SkillsMarquee = () => {
                             key={index}
                             label={item}
                             icon={<img width={item === 'MongoDB' ? 12 : 22} src={`/skill-svg/${item.toLowerCase()}.svg`} />}
-                            sx={{ px: 1.3, py: 2.5, borderRadius: 50 }}
+                            sx={{ px: 1.3, py: 2.5, borderRadius: 50, }}
                         />
                     ))
                 }
