@@ -50,6 +50,8 @@ import { IoIosArrowUp } from "react-icons/io";
 import { TbArrowBigUpLine } from "react-icons/tb";
 import { PiStarFourBold } from "react-icons/pi";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { FaGoogle } from "react-icons/fa";
+import { TbPasswordUser } from "react-icons/tb";
 
 const IconList = {
     communication: MdConnectWithoutContact,
@@ -105,7 +107,9 @@ const IconList = {
     arrowUp: IoIosArrowUp,
     bigArrowUp: TbArrowBigUpLine,
     star: PiStarFourBold,
-    eye: MdOutlineRemoveRedEye
+    eye: MdOutlineRemoveRedEye,
+    google: FaGoogle,
+    password: TbPasswordUser
 };
 
 type IconName = keyof typeof IconList;

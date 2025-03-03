@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { alpha, Box, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 import split from '../../../utils/splitStringUsingRegex';
 import './index.css';
@@ -13,13 +13,14 @@ const Loader = () => {
 
     return (
         <Box
-            className="loading-compo"
-            height={'100vh'}
-            display={'flex'}
-            flexDirection={'column'}
-            justifyContent={'center'}
-            alignItems={'center'}
-            position={'relative'}
+            id="pagenotfound" minHeight={'100vh'} position={'relative'} overflow={'hidden'}
+            sx={{
+                background: theme => `linear-gradient(90deg, ${alpha(theme.palette.primary.main, 0.1)} 0%, ${theme.palette.background.default} 50%, ${alpha(theme.palette.primary.main, 0.05)} 100%)`,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
         >
             <Box>
                 <main>

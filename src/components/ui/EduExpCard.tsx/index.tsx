@@ -37,7 +37,7 @@ const EduExpCard = ({ data, isExpanded, onToggleExpand }: EduExpCardProps) => {
                 }}
             >
                 <Typography variant='h6' fontWeight={'bold'}>{data.title}</Typography>
-                <Stack direction={'row'} gap={1} divider={<Typography variant='caption'>|</Typography>}>
+                <Stack direction={'row'} flexWrap={'wrap'} gap={1} divider={<Typography variant='caption'>|</Typography>}>
                     <Typography variant='caption'>{data.location}</Typography>
                     <Typography variant='caption'>1 Year</Typography>
                     <Typography variant='caption'>{data.jobType}</Typography>
