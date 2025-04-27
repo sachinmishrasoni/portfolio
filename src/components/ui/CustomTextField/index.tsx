@@ -7,12 +7,14 @@ interface CustomTextFieldProps extends Omit<TextFieldProps, "error"> {
     error?: boolean;
     errorMessage?: string;
     prefixIcon?: React.ReactNode;
+    endIcon?: React.ReactNode;
 }
 
 const CustomTextField: React.FC<CustomTextFieldProps> = ({
     error,
     errorMessage = "",
     prefixIcon,
+    endIcon,
     ...props
 }) => {
     return (
@@ -31,7 +33,12 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({
             }}
             slotProps={{
                 input: {
-                    startAdornment: prefixIcon && <InputAdornment position="start">{prefixIcon}</InputAdornment>,
+                    startAdornment: prefixIcon && (
+                        <InputAdornment position="start">{prefixIcon}</InputAdornment>
+                    ),
+                    endAdornment: endIcon && (
+                        <InputAdornment position="end">{endIcon}</InputAdornment>
+                    ),
                 },
             }}
             {...props} // Spread other props

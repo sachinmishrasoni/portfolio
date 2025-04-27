@@ -14,7 +14,7 @@
     width: 3px;
     padding: 10px 15px;
     height: 35px;
-    border: 2px solid #fff;
+    border: 2px solid;
     border-radius: 25px;
     opacity: 0.75;
     box-sizing: content-box;

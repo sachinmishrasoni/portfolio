@@ -1,24 +1,24 @@
-import Layout from '../../components/layout'
-import Hero from '../../sections/hero'
-import About from '../../sections/about'
-import Service from '../../sections/service'
-import Contact from '../../sections/contact'
-import Projects from '../../sections/projects'
-import HeroSectionMarquee from '../../components/ui/HeroSectionMarquee'
-import SkillsMarquee from '../../components/ui/SkillsMarquee'
+import React from "react"
+import HeroSection from "./sections/hero"
+import AboutSection from "./sections/about"
+import ServiceSection from "./sections/service"
+import ProjectsSection from "./sections/projects"
+import ContactSection from "./sections/contact"
+import HeroSectionMarquee from "@/components/ui/HeroSectionMarquee"
+import SkillsMarquee from "@/components/ui/SkillsMarquee"
 
 
 const Home = () => {
     return (
-        <Layout>
-            <Hero />
+        <React.Fragment>
+            <HeroSection />
             <HeroSectionMarquee />
-            <About />
-            <Service />
+            <AboutSection />
+            <ServiceSection />
             <SkillsMarquee />
-            <Projects />
-            <Contact />
-        </Layout>
+            <ProjectsSection />
+            <ContactSection />
+        </React.Fragment>
     )
 }
 

@@ -1,6 +1,9 @@
-import { alpha, AppBar, Avatar, Box, Button, List, ListItemButton, Stack, Toolbar, Typography } from '@mui/material';
+import { alpha, AppBar, Avatar, Box, IconButton, List, ListItemButton, Stack, Toolbar, Typography } from '@mui/material';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import debounce from 'lodash/debounce';
+import { IconList } from '../../utils/iconList';
+import CustomMenu from '../common/CustomMenu';
+import ThemeToggleBtn from '../ui/ThemeToggleBtn';
 
 // Define the type for menu items
 interface MenuItem {
@@ -25,10 +28,30 @@ const menuItems: MenuItem[] = [
 ];
 
 const Header = () => {
+    // const navigate = useNavigate();
     const sectionsRef = useRef<HTMLElement[]>([]);
     const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
     const [activeSection, setActiveSection] = useState<string | null>('home');
     const [isVisible, setIsVisible] = useState(false);
+
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+    const menuList = [
+        { text: 'Home', path: '/settings', icon: <IconList.home /> },
+        { text: 'About', path: '/logout', icon: <IconList.person /> },
+        { text: 'Services', path: '/logout', icon: <IconList.service /> },
+        { text: 'Projects', path: '/logout', icon: <IconList.project /> },
+        { text: 'Contact me', path: '/logout', icon: <IconList.contact /> },
+        { text: 'Settings', path: '/logout', icon: <IconList.settings /> },
+    ];
+
+    const handleOpen = (event: React.MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget);
+    const handleClose = () => setAnchorEl(null);
+
+    const handleSelect = (path: string) => {
+        console.log('Navigating to:', path);
+        handleClose();
+    };
 
     // Initialize indicator style
     const [indicatorStyle, setIndicatorStyle] = useState<IndicatorStyle>({
@@ -84,7 +107,7 @@ const Header = () => {
 
             setActiveSection((prev) => (prev !== newActiveSection ? newActiveSection : prev));
 
-            let hieghtToHidden = 150;
+            const hieghtToHidden = 150;
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
 
             if (winScroll > hieghtToHidden) {
@@ -123,25 +146,38 @@ const Header = () => {
                 },
                 mx: 'auto',
                 background: (theme) =>
-                    `linear-gradient(175deg, ${alpha(theme.palette.primary.main, 0.1)} 0%, ${alpha(
+                    `linear-gradient(175deg, ${alpha(theme.palette.primary.main, 0.4)} 0%, ${alpha(
                         theme.palette.background.paper,
                         0.2
                     )} 50%, ${alpha(theme.palette.primary.main, 0.2)} 100%)`,
                 borderRadius: '50px',
                 border: '0.1px solid',
-                borderColor: 'primary.main',
+                borderColor: theme => alpha(theme.palette.primary.main, 0.5),
                 top: isVisible ? 5 : '-100px',
                 left: '50%',
                 transform: 'translateX(-50%)',
                 transition: 'all 0.5s ease-in-out',
                 boxShadow: 'none',
                 backdropFilter: 'blur(10px)',
+                pr: '0px !important',
             }}
         >
-            <Toolbar sx={{ px: '10px !important', display: 'flex', justifyContent: 'space-between' }}>
-                <Stack direction="row" alignItems="center" gap={1}>
-                    <Avatar src="/images/avatar.jpg" />
-                    <Typography variant="h4" fontWeight="bold">
+            <Toolbar 
+            sx={{ 
+                p: '0px !important', pr: '8px !important', 
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between' 
+            }}
+                >
+                <Stack direction="row" alignItems="center" gap={0}>
+                    <IconButton  sx={{
+                        p: 0,
+                        margin: 0.5
+                    }}>
+                        <Avatar src="/images/avatar.jpg"
+                            sx={{ minWidth: { xs: '50px', md: '45px' }, height: { xs: '50px', md: '45px' } }}
+                        />
+                    </IconButton>
+                    <Typography variant="h4" fontWeight="bold" >
                         SAM
                     </Typography>
                 </Stack>
@@ -172,6 +208,7 @@ const Header = () => {
                                                 : 'text.primary',
                                         fontWeight: 'bold',
                                         borderRadius: 25,
+                                        py: 0.8,
                                         transition: 'all 0.3s ease',
                                         zIndex: 2,
                                         '&:hover': {
@@ -189,10 +226,11 @@ const Header = () => {
                         <Box
                             sx={{
                                 position: 'absolute',
-                                top: 7,
+                                top: '7px',
                                 borderRadius: '25px',
                                 bgcolor: 'primary.main',
                                 zIndex: 0,
+                                boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
                                 transition: 'all 0.3s ease-in',
                                 ...indicatorStyle,
                             }}
@@ -200,10 +238,22 @@ const Header = () => {
                     </List>
                 </Box>
 
-                <Button variant="contained" sx={{ borderRadius: '25px', boxShadow: 'none' }}>
-                    Hire me
-                </Button>
+                <Stack direction="row" alignItems="center" gap={1}>
+                    <ThemeToggleBtn />
+                    <IconButton onClick={handleOpen}>
+                        <IconList.menuRight />
+                    </IconButton>
+                </Stack>
             </Toolbar>
+            <CustomMenu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={() => setAnchorEl(null)}
+                menuList={menuList}
+                onSelect={handleSelect}
+                anchorOrigin={{ vertical: 55, horizontal: 'right' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            />
         </AppBar>
     );
 };

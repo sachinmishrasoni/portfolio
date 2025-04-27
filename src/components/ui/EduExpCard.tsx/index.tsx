@@ -16,7 +16,7 @@ const EduExpCard = ({ data, isExpanded, onToggleExpand }: EduExpCardProps) => {
                 px: 2,
                 display: 'inline-block',
                 borderRadius: 5,
-                backgroundColor: 'primary.dark',
+                backgroundColor: 'primary.main',
                 color: 'primary.contrastText',
                 transform: 'translateX(-50px)',
                 boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
@@ -30,6 +30,7 @@ const EduExpCard = ({ data, isExpanded, onToggleExpand }: EduExpCardProps) => {
                     borderRadius: 3,
                     boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
                     cursor: 'default',
+                    border: 'none',
                     transition: '0.3s all ease-in-out',
                     '&:hover': {
                         boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)'

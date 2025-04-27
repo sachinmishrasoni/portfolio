@@ -1,0 +1,67 @@
+TipTapEditor.css
+
+.tiptap-editor-container {
+    width: 100%;
+    max-width: 100%;
+}
+
+.tiptap-toolbar {
+    /* background-color: #f5f5f5;
+    border-bottom: 1px solid #e0e0e0; */
+    /* padding: 8px; */
+    /* flex-wrap: wrap; */
+    /* gap: 8px; */
+}
+
+.tiptap-content {
+    /* border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 8px;
+    min-height: 200px;
+    max-width: 100%;
+    overflow: auto; */
+}
+
+/* ProseMirror specific styles */
+.ProseMirror {
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+/* List styles */
+.ProseMirror ul,
+.ProseMirror ol {
+    margin: 0.5em 0;
+    padding-left: 2em;
+    max-width: 100%;
+}
+
+/* Ensure nested lists stay contained */
+.ProseMirror ul ul,
+.ProseMirror ul ol,
+.ProseMirror ol ul,
+.ProseMirror ol ol {
+    margin: 0.25em 0;
+}
+
+/* Prevent horizontal overflow */
+.ProseMirror p,
+.ProseMirror li {
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Optional: Add some basic styling */
+.ProseMirror:focus {
+    outline: none;
+    border-color: #1976d2;
+}
+
+.ProseMirror ul {
+    list-style-type: disc;
+}
+
+.ProseMirror ol {
+    list-style-type: decimal;
+}

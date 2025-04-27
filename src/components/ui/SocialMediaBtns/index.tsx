@@ -17,7 +17,7 @@ const SocialMediaBtns = () => {
     };
 
     return (
-        <Stack direction={'row'} alignItems={'center'} gap={1}>
+        <Stack direction={'row'} flexWrap={'wrap'} alignItems={'center'} gap={1}>
             {
                 items.map((item, index) => (
                     <Tooltip key={index} title={item.label} arrow>

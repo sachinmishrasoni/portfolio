@@ -4,12 +4,10 @@ import CustomTextField from '../../../components/ui/CustomTextField';
 import { IconList } from '../../../utils/iconList';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppTheme } from '../../../context/theme/themeProvider'; // Adjust path
 import { FirebaseError } from 'firebase/app';
-import { auth, loginWithEmail } from '../../../lib/firebase';
-import { GoogleAuthProvider } from 'firebase/auth';
-import { signInWithPopup } from 'firebase/auth';
-import { ALLOWED_EMAIL } from '../../../constant';
+import { loginWithEmail, loginWithGoogle } from '../../../services/authService';
+import { useDispatch } from 'react-redux';
+import { showToast } from '@/store/features/ui/uiSlice';
 
 // Regular Expressions for validation
 const emailExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -18,7 +16,8 @@ const passwordExp = /^[a-zA-Z0-9]{6,}$/;
 
 const Login = () => {
     const theme = useTheme();
-    const { showToast } = useAppTheme();
+    const dispatch = useDispatch();
+    // const { showToast } = useAppTheme();
     // const { login } = useAuth();
     const navigate = useNavigate();
 
@@ -70,41 +69,32 @@ const Login = () => {
         if (validateForm()) {
             setLoading(true);
             try {
+                // await linkGoogleToAdmin(formData.email, formData.password);
                 await loginWithEmail(formData.email, formData.password);
-                showToast('Login successful!', 'success');
+                dispatch(showToast({ message: 'Login successful!', severity: 'success' }));
                 navigate('/admin'); // Redirect to admin page
             } catch (error) {
                 if (error instanceof FirebaseError) {
-                    showToast(error.message, 'error');
+                    dispatch(showToast({ message: error.message, severity: 'error' }));
                 } else {
-                    showToast('Login failed. Please try again.', 'error');
+                    dispatch(showToast({ message: 'Login failed. Please try again.', severity: 'error' }));
                 }
             } finally {
                 setLoading(false);
             }
         } else {
-            showToast('Validation failed. Please check your inputs.', 'error');
+            dispatch(showToast({ message: 'Validation failed. Please check your inputs.', severity: 'error' }));
         }
     };
 
     // Handle Google login
     const handleGoogleLogin = async () => {
         try {
-            const provider = new GoogleAuthProvider();
-            const result = await signInWithPopup(auth, provider);
-            const user = result.user;
-    
-            if (user.email !== ALLOWED_EMAIL) {
-                showToast('Access Denied: Unauthorized Email', 'error');
-                await auth.signOut(); // Logout immediately
-                return;
-            }
-    
-            showToast('Google Login Successful!', 'success');
-            navigate('/admin');
-        } catch (error) {
-            showToast('Google Login Failed. Try again!', 'error');
-            console.error('Google login error:', error);
+            await loginWithGoogle();
+            dispatch(showToast({ message: 'Google Login Successful!', severity: 'success' }));
+            navigate("/admin");
+        } catch (error: any) {
+            dispatch(showToast({ message: error.message, severity: 'error' }));
         }
     };
 
@@ -139,7 +129,7 @@ const Login = () => {
                     Admin Login
                 </Typography>
 
-                <Box 
+                <Box
                     component={'form'}
                     onSubmit={handleSubmit}
                     sx={{
@@ -160,13 +150,13 @@ const Login = () => {
                         error={!!errors.email}
                         helperText={errors.email}
                     />
-                    <CustomTextField 
+                    <CustomTextField
                         required
                         name="password"
                         type='password'
                         placeholder="Password"
                         prefixIcon={<IconList.password fontSize={20} />}
-                        
+
                         value={formData.password}
                         onChange={handleChange}
                         error={!!errors.password}

@@ -8,7 +8,8 @@ const AboutAvatar = () => {
                     height: '300px',
                     width: '40px',
                     border: '3px solid',
-                    borderColor: 'primary.main',
+                    // borderColor: theme => theme.palette.grey[500],
+                    borderColor: 'primary.light',
                     borderRadius: '25px',
                 }} />
 
@@ -36,6 +37,7 @@ const AboutAvatar = () => {
                 <Box
                     component="img"
                     src={'/images/person.jpg'}
+                    loading="lazy"
                     alt="Person Image"
                     sx={{
                         width: '100%', // Makes image fill the container
@@ -51,7 +53,7 @@ const AboutAvatar = () => {
                     height: '300px',
                     width: '40px',
                     border: '3px solid',
-                    borderColor: 'primary.main',
+                    borderColor: 'primary.light',
                     borderRadius: '25px',
                 }} />
 

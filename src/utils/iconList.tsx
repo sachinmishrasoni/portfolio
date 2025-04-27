@@ -52,6 +52,18 @@ import { PiStarFourBold } from "react-icons/pi";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { FaGoogle } from "react-icons/fa";
 import { TbPasswordUser } from "react-icons/tb";
+import { HiMenuAlt2 } from "react-icons/hi";
+import { HiMenuAlt3 } from "react-icons/hi";
+import { FiPlus } from "react-icons/fi";
+import { IoClose } from "react-icons/io5";
+import { IoIosArrowBack } from "react-icons/io";
+import { LuSave } from "react-icons/lu";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { HiOutlineLogout } from "react-icons/hi";
+import { BsPerson } from "react-icons/bs";
+import { BsPersonWorkspace } from "react-icons/bs";
+import { LuContact } from "react-icons/lu";
+import { RiHome2Line } from "react-icons/ri";
 
 const IconList = {
     communication: MdConnectWithoutContact,
@@ -109,7 +121,20 @@ const IconList = {
     star: PiStarFourBold,
     eye: MdOutlineRemoveRedEye,
     google: FaGoogle,
-    password: TbPasswordUser
+    password: TbPasswordUser,
+    menuLeft: HiMenuAlt2,
+    menuRight: HiMenuAlt3,
+    plus: FiPlus,
+    close: IoClose,
+    back: IoIosArrowBack,
+    save: LuSave,
+    admin: MdOutlineAdminPanelSettings,
+    logout: HiOutlineLogout,
+    person: BsPerson,
+    service: BsPersonWorkspace,
+    contact: LuContact,
+    project: FaLaptopCode,
+    home: RiHome2Line
 };
 
 type IconName = keyof typeof IconList;

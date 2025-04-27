@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signOut, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 // Load Firebase config from environment variables
 const firebaseConfig = {
@@ -14,27 +15,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const googleProvider = new GoogleAuthProvider();
 
-// Login function
-export const loginWithEmail = async (email: string, password: string) => {
-    return await signInWithEmailAndPassword(auth, email, password);
-};
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
+export const googleProvider = new GoogleAuthProvider();
+// googleProvider.setCustomParameters({ prompt: "select_account" });
 
-// Google Sign-in function
-export const loginWithGoogle = async () => {
-    return await signInWithPopup(auth, googleProvider);
-};
-
-export const logout = async () => {
-    try {
-        await signOut(auth);
-        console.log('User logged out successfully');
-    } catch (error) {
-        console.error('Logout Error:', error);
-    }
-};
-
-export { auth, db };
+export default app;

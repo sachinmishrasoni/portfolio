@@ -4,11 +4,46 @@ import { GoDotFill } from 'react-icons/go'
 import CardSwiper from './CardSwiper'
 import { useEffect, useRef, useState } from 'react';
 import SpotlightPaper from '../SpotlightPaper';
+import { useNavigate } from 'react-router-dom'; 
+import { format } from 'date-fns';
 
 const techs = ['React', 'Nodejs', 'Material UI', 'TypeScript', 'Express', 'MongoDB'];
 
-const ProjectCard = () => {
+interface DescriptionProps {
+  htmlContent: string;
+}
+// const DescriptionComponent: React.FC<DescriptionProps> = ({ htmlContent }) => {
+//   return (
+//     <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+//   );
+// };
+
+const DescriptionComponent: React.FC<DescriptionProps> = ({ htmlContent }) => {
+  return (
+    <Typography
+      variant="body1"
+      color="text.secondary"
+      sx={{
+        display: '-webkit-box',
+        WebkitLineClamp: 3, // Limits to 2 lines
+        WebkitBoxOrient: 'vertical',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        minHeight: '3em', // Ensures consistent height (2 lines * 1.5em line-height)
+      }}
+      dangerouslySetInnerHTML={{ __html: htmlContent }}
+    />
+  );
+};
+
+const formatDate = (dateString: string): string => {
+  const date = new Date(dateString);
+  return format(date, 'dd MMM yyyy'); // e.g., "16 Apr 2025"
+};
+
+const ProjectCard = ({ data }: any) => {
   const theme = useTheme();
+  const navigate = useNavigate();
   const [visibleTechs, setVisibleTechs] = useState<string[]>([]);
   const [hiddenCount, setHiddenCount] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -51,57 +86,59 @@ const ProjectCard = () => {
   }, [techs]);
 
   return (
-    <>
-      <SpotlightPaper
-        spotlightColor={alpha(theme.palette.primary.main, 0.25)}
-        sx={{
-          p: 2,
-          borderRadius: 3,
-          backgroundColor: (theme) => alpha(theme.palette.background.paper, 0.5),
-          position: 'relative',
-          overflow: 'hidden',
-          backdropFilter: 'blur(5px)',
-          boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)'
-        }}
-      >
-        <Box sx={{
-          height: 100,
-          width: 100,
-          backgroundColor: theme => alpha(theme.palette.primary.main, 0.5),
-          borderRadius: '50%',
-          position: 'absolute',
-          left: -15,
-          top: -15,
-          zIndex: -1,
-          filter: 'blur(50px)'
-        }} />
+    <SpotlightPaper
+      spotlightColor={alpha(theme.palette.primary.main, 0.25)}
+      sx={{
+        width: '100%',
+        p: 2,
+        borderRadius: 3,
+        backgroundColor: (theme) => alpha(theme.palette.background.paper, 0.5),
+        position: 'relative',
+        overflow: 'hidden',
+        backdropFilter: 'blur(5px)',
+        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+        // cursor: 'pointer'
+      }}
 
-        {
-          false ? (<CardSwiper />) : (
-            <Paper sx={{
-              height: 150,
-              boxShadow: 'none',
-              color: 'text.primary',
-              fontWeight: 'bold',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              zIndex: '12 !important'
-            }} >
-              <Typography variant='h4'>Image</Typography>
-            </Paper>
-          )
-        }
-        <Box mt={1}>
-          <Typography variant='h5' fontWeight={'bold'}>Project Title</Typography>
-          <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
-            <Typography component={'p'} variant='caption' fontWeight={'bold'} color={'gray'}>3 year ago</Typography>
-            <Stack direction={'row'} gap={0.5} alignItems={'center'}>
-              <GoDotFill color='lightgreen' />
-              <Typography variant='caption' color={'gray'}>Completed</Typography>
-            </Stack>
+    >
+      <Box sx={{
+        height: 100,
+        width: 100,
+        backgroundColor: theme => alpha(theme.palette.primary.main, 0.5),
+        borderRadius: '50%',
+        position: 'absolute',
+        left: -15,
+        top: -15,
+        zIndex: -1,
+        filter: 'blur(50px)'
+      }} />
+
+      {
+        false ? (<CardSwiper />) : (
+          <Paper sx={{
+            height: 150,
+            boxShadow: 'none',
+            color: 'text.primary',
+            fontWeight: 'bold',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: '12 !important'
+          }} >
+            <Typography variant='h4'>Image</Typography>
+          </Paper>
+        )
+      }
+      <Box mt={1}>
+        <Typography variant='h5' fontWeight={'bold'} color='text.primary'>{data?.projectName || "Project Name"}</Typography>
+        <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+          <Typography component={'p'} variant='caption' fontWeight={'bold'} color={'gray'}>{formatDate(data?.startDate) || "Date"}</Typography>
+          <Stack direction={'row'} gap={0.5} alignItems={'center'}>
+            <GoDotFill color={data?.status === 'Completed' ? 'green' : 'red'} />
+            <Typography variant='caption' color={'gray'}>{data?.status || "Status"}</Typography>
           </Stack>
-          <Typography variant='body1' color={'text.secondary'}
+        </Stack>
+        {/* <Typography variant='body1' color={'text.secondary'}
             sx={{
               display: '-webkit-box',
               WebkitLineClamp: 3,
@@ -112,129 +149,82 @@ const ProjectCard = () => {
               lineBreak: 'anywhere'
             }}
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas sequi fugiat, provident voluptates ipsa excepturi sit id molestias dolorem eaque modi a quae in neque cum quaerat dicta placeat aliquid.
-          </Typography>
+            {data?.description || "Description"}
+          </Typography> */}
 
-          {/* <Stack direction={'row'} alignItems={'center'} flexWrap={'wrap'} gap={1} mt={1}>
-            <Typography variant='body2' fontWeight={'bold'}>Tech : </Typography>
-            <Chip
-              size='small'
-              label='React'
-              icon={<FaReact size={15} />}
-              sx={{
-                fontSize: '0.65rem'
-              }}
+        <DescriptionComponent htmlContent={data?.description || "Description"} />
 
-            />
-            <Chip
-              size='small'
-              label='React'
-              icon={<FaReact size={15} />}
-              sx={{
-                fontSize: '0.65rem'
-              }}
 
-            />
-            <Chip
-              size='small'
-              label='Nodejs'
-              icon={<FaReact size={15} />}
-              sx={{
-                fontSize: '0.65rem'
-              }}
-
-            />
-            <Chip
-              size='small'
-              label='Material UI'
-              icon={<FaReact size={15} />}
-              sx={{
-                fontSize: '0.65rem'
-              }}
-
-            />
-            <Chip
-              size='small'
-              label='3+ More'
-              // icon={<FaReact size={15} />}
-              sx={{
-                fontSize: '0.65rem'
-              }}
-
-            />
-          </Stack> */}
-
-          {/* Tech chips with dynamic overflow */}
-          <Stack
-            ref={containerRef}
-            direction='row'
-            alignItems='center'
-            flexWrap='nowrap'
-            gap={1}
-            mt={1}
-            sx={{
-              overflow: 'hidden',
-              position: 'relative',
-              pr: hiddenCount > 0 ? 6 : 0
-            }}
-          >
-            {/* <Typography variant='body2' fontWeight={'bold'}>
+        {/* Tech chips with dynamic overflow */}
+        <Stack
+          ref={containerRef}
+          direction='row'
+          alignItems='center'
+          flexWrap='nowrap'
+          gap={1}
+          mt={1}
+          sx={{
+            overflow: 'hidden',
+            position: 'relative',
+            pr: hiddenCount > 0 ? 6 : 0
+          }}
+        >
+          {/* <Typography variant='body2' fontWeight={'bold'}>
           Tech :
         </Typography> */}
 
-            {visibleTechs.map((tech, index) => (
-              <Chip
-                key={index}
-                role='tech-chip'
-                size='small'
-                label={tech}
-                icon={<FaReact size={15} />}
-                sx={{ fontSize: '0.65rem', flexShrink: 0 }}
-              />
-            ))}
+          {visibleTechs.map((tech, index) => (
+            <Chip
+              key={index}
+              role='tech-chip'
+              size='small'
+              label={tech}
+              icon={<FaReact size={15} />}
+              sx={{ fontSize: '0.65rem', flexShrink: 0 }}
+            />
+          ))}
 
-            {hiddenCount > 0 && (
-              <Chip
-                size='small'
-                label={`+${hiddenCount} More`}
-                sx={{
-                  fontSize: '0.65rem',
-                  position: 'absolute',
-                  right: 0,
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  flexShrink: 0
-                }}
-              />
-            )}
-          </Stack>
-
-          <Stack
-            direction={'row'}
-            alignItems={'center'}
-            justifyContent={'space-between'}
-            mt={1}
-            sx={{
-              '& button': {
+          {hiddenCount > 0 && (
+            <Chip
+              size='small'
+              label={`+${hiddenCount} More`}
+              sx={{
                 fontSize: '0.65rem',
-                fontWeight: 'bold',
-                borderRadius: 5,
-                letterSpacing: 1.5,
-                textTransform: 'none'
-              }
-            }}
-          >
-            <Stack direction={'row'} alignItems={'center'} gap={1}>
-              <Button className='live-btn' variant='contained'>Live</Button>
-              <Button className='github-btn' variant='outlined'>GitHUB</Button>
-            </Stack>
-            <Button sx={{ overflow: 'hidden' }}>
-              Details
-            </Button>
+                position: 'absolute',
+                right: 0,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                flexShrink: 0
+              }}
+            />
+          )}
+        </Stack>
+
+        <Stack
+          direction={'row'}
+          alignItems={'center'}
+          justifyContent={'space-between'}
+          mt={1}
+          sx={{
+            '& button': {
+              fontSize: '0.65rem',
+              fontWeight: 'bold',
+              borderRadius: 5,
+              letterSpacing: 1.5,
+              textTransform: 'none'
+            }
+          }}
+        >
+          <Button sx={{ overflow: 'hidden' }} onClick={() => navigate(`/projects/${555}`)}>
+            Details
+          </Button>
+          <Stack direction={'row'} alignItems={'center'} gap={1}>
+            <Button className='github-btn' variant='outlined'>GitHUB</Button>
+            <Button className='live-btn' variant='contained'>Live</Button>
           </Stack>
-        </Box>
-      </SpotlightPaper>
-    </>
+        </Stack>
+      </Box>
+    </SpotlightPaper>
   )
 }
 

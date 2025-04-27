@@ -18,11 +18,23 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
             mode: state.mode,
             background: state.mode === 'dark'
                 ? { default: '#040D12', paper: '#040D12' }
-                : { default: '#ffffff', paper: '#F7F7F7' },
-            // primary: {
-            //     main: '#FFD95F'
-            // }
+                : { default: '#FBFBFB', paper: '#F8FAFC' },
+            primary: {
+                main: '#BEADFA'
+            },
+            // text: {
+            //     primary: '#27374D',
+            //     secondary: '#4a5565'
+            // },
         },
+        mixins:{
+            toolbar: {
+                minHeight: '48px'
+            }
+        },
+        typography: {
+            fontFamily: ['roboto'].join(','),
+        }
     })), [state.mode]);
 
     const showToast = (message: string, severity: AlertColor = 'info') => {
@@ -36,6 +48,8 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     const showConfirmation = (title: string, message: string, onConfirm: () => void) => {
         dispatch({ type: 'SHOW_CONFIRMATION', payload: { title, message, onConfirm } });
     };
+
+    // throw new Error('useAppTheme must be used within a AppThemeProvider');
 
     const hideConfirmation = () => {
         dispatch({ type: 'HIDE_CONFIRMATION' });

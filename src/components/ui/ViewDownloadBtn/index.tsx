@@ -53,7 +53,9 @@ const ViewDownloadBtn = () => {
             <Button aria-label='download' onClick={handleDownload} sx={{
                 pl: 5.5,
                 pr: 2,
-                zIndex: 0
+                zIndex: 0,
+                color: 'primary.dark',
+                backdropFilter: 'blur(10px)'
             }}>
                 CV Download
             </Button>

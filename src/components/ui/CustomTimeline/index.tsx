@@ -74,7 +74,7 @@ const CustomTimeline: React.FC<IProps> = ({ data }) => {
                     sx={{
                         borderRadius: 25,
                         alignSelf: 'center', // Center the button horizontally
-                        mt: 2, // Margin top for spacing
+                        mt: 2, // Margin top for spacing,
                     }}
                 >
                     See more

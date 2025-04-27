@@ -1,21 +1,25 @@
 import { Alert, Snackbar } from "@mui/material"
-import { useAppTheme } from "../../../context/theme/themeProvider"
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store";
+import { hideToast } from "@/store/features/ui/uiSlice";
 
 const Toaster = () => {
-    const { state, hideToast } = useAppTheme()
+    const dispatch = useDispatch();
+    const { open, message, severity } = useSelector((state: RootState) => state.ui.toast);
+
     return (
         <Snackbar
-            open={state.toast.open}
+            open={open}
             autoHideDuration={3000}
-            onClose={hideToast}
+            onClose={() => dispatch(hideToast())}
             anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         >
             <Alert
                 // onClose={hideToast}
-                severity={state.toast.severity}
+                severity={severity}
                 sx={{ width: '100%', borderRadius: 25 }}
             >
-                {state.toast.message}
+                {message}
             </Alert>
         </Snackbar>
     )

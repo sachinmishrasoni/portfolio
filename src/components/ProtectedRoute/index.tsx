@@ -15,7 +15,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     if (loading) return <Loader />; // Show loading while checking auth state
 
     if (!user || user.email !== ALLOWED_EMAIL) {
-        return <Navigate to="/login" replace />;
+        return <Navigate to="/auth/login" replace />;
     }
 
     return <>{children}</>;
