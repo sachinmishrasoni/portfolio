@@ -1,5 +1,5 @@
 import { alpha, AppBar, Avatar, Box, IconButton, List, ListItemButton, Stack, Toolbar, Typography } from '@mui/material';
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import debounce from 'lodash/debounce';
 import { IconList } from '../../utils/iconList';
 import CustomMenu from '../common/CustomMenu';
@@ -90,34 +90,65 @@ const Header = () => {
     }, [activeSection]);
 
     // Scroll listener (debounced)
-    const listenToScroll = useCallback(
-        debounce(() => {
-            const pageYOffset = window.pageYOffset + 200;
-            let newActiveSection: string | null = null;
+    // const listenToScroll = useCallback(
+    //     debounce(() => {
+    //         const pageYOffset = window.pageYOffset + 200;
+    //         let newActiveSection: string | null = null;
 
-            sectionsRef.current.forEach((section) => {
-                if (section) {
-                    const sectionOffsetTop = section.offsetTop;
-                    const sectionHeight = section.offsetHeight;
-                    if (pageYOffset >= sectionOffsetTop && pageYOffset < sectionOffsetTop + sectionHeight) {
-                        newActiveSection = section.id;
+    //         sectionsRef.current.forEach((section) => {
+    //             if (section) {
+    //                 const sectionOffsetTop = section.offsetTop;
+    //                 const sectionHeight = section.offsetHeight;
+    //                 if (pageYOffset >= sectionOffsetTop && pageYOffset < sectionOffsetTop + sectionHeight) {
+    //                     newActiveSection = section.id;
+    //                 }
+    //             }
+    //         });
+
+    //         setActiveSection((prev) => (prev !== newActiveSection ? newActiveSection : prev));
+
+    //         const hieghtToHidden = 150;
+    //         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+
+    //         if (winScroll > hieghtToHidden) {
+    //             setIsVisible(true);
+    //         } else {
+    //             setIsVisible(false);
+    //         }
+    //     }, 100),
+    //     []
+    // );
+
+    const listenToScroll = useMemo(
+        () =>
+            debounce(() => {
+                const pageYOffset = window.pageYOffset + 200;
+                let newActiveSection: string | null = null;
+
+                sectionsRef.current.forEach((section) => {
+                    if (section) {
+                        const sectionOffsetTop = section.offsetTop;
+                        const sectionHeight = section.offsetHeight;
+                        if (pageYOffset >= sectionOffsetTop && pageYOffset < sectionOffsetTop + sectionHeight) {
+                            newActiveSection = section.id;
+                        }
                     }
+                });
+
+                setActiveSection((prev) => (prev !== newActiveSection ? newActiveSection : prev));
+
+                const hieghtToHidden = 150;
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+
+                if (winScroll > hieghtToHidden) {
+                    setIsVisible(true);
+                } else {
+                    setIsVisible(false);
                 }
-            });
-
-            setActiveSection((prev) => (prev !== newActiveSection ? newActiveSection : prev));
-
-            const hieghtToHidden = 150;
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-
-            if (winScroll > hieghtToHidden) {
-                setIsVisible(true);
-            } else {
-                setIsVisible(false);
-            }
-        }, 100),
+            }, 100),
         []
     );
+
 
     // Setup event listeners and section references
     useEffect(() => {
@@ -162,14 +193,14 @@ const Header = () => {
                 pr: '0px !important',
             }}
         >
-            <Toolbar 
-            sx={{ 
-                p: '0px !important', pr: '8px !important', 
-                display: 'flex', alignItems: 'center', justifyContent: 'space-between' 
-            }}
-                >
+            <Toolbar
+                sx={{
+                    p: '0px !important', pr: '8px !important',
+                    display: 'flex', alignItems: 'center', justifyContent: 'space-between'
+                }}
+            >
                 <Stack direction="row" alignItems="center" gap={0}>
-                    <IconButton  sx={{
+                    <IconButton sx={{
                         p: 0,
                         margin: 0.5
                     }}>
@@ -193,7 +224,10 @@ const Header = () => {
                         {menuItems.map((item, index) => (
                             <Box
                                 key={item.label}
-                                ref={(el: any) => (itemsRef.current[index] = el)}
+                                // ref={(el: any) => (itemsRef.current[index] = el)}
+                                ref={(el: HTMLDivElement | null) => {
+                                    itemsRef.current[index] = el;
+                                }}
                                 sx={{ position: 'relative' }}
                             >
                                 <ListItemButton

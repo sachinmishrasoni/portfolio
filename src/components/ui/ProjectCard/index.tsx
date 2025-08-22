@@ -4,8 +4,7 @@ import { GoDotFill } from 'react-icons/go'
 import CardSwiper from './CardSwiper'
 import { useEffect, useRef, useState } from 'react';
 import SpotlightPaper from '../SpotlightPaper';
-import { useNavigate } from 'react-router-dom'; 
-import { format } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 
 const techs = ['React', 'Nodejs', 'Material UI', 'TypeScript', 'Express', 'MongoDB'];
 
@@ -36,12 +35,24 @@ const DescriptionComponent: React.FC<DescriptionProps> = ({ htmlContent }) => {
   );
 };
 
-const formatDate = (dateString: string): string => {
-  const date = new Date(dateString);
-  return format(date, 'dd MMM yyyy'); // e.g., "16 Apr 2025"
-};
+// const formatDate = (dateString: string): string => {
+//   const date = new Date(dateString);
+//   return format(date, 'dd MMM yyyy'); // e.g., "16 Apr 2025"
+// };
+interface Project {
+  projectName: string;
+  status: "active" | "inactive" | "completed";
+  description: string;
+  technologies?: string[];
+  github?: string;
+  live?: string;
+}
 
-const ProjectCard = ({ data }: any) => {
+interface ProjectCardProps {
+  data: Project;
+}
+
+const ProjectCard = ({ data }: ProjectCardProps) => {
   const theme = useTheme();
   const navigate = useNavigate();
   const [visibleTechs, setVisibleTechs] = useState<string[]>([]);
@@ -134,7 +145,7 @@ const ProjectCard = ({ data }: any) => {
         <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
           {/* <Typography component={'p'} variant='caption' fontWeight={'bold'} color={'gray'}>{formatDate(data?.startDate) || "Date"}</Typography> */}
           <Stack direction={'row'} gap={0.5} alignItems={'center'}>
-            <GoDotFill color={data?.status === 'Completed' ? 'green' : 'red'} />
+            <GoDotFill color={data?.status === 'completed' ? 'green' : 'red'} />
             <Typography variant='caption' color={'gray'}>{data?.status || "Status"}</Typography>
           </Stack>
         </Stack>

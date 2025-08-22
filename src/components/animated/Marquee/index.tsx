@@ -42,8 +42,8 @@ const Marquee = ({
   const smoothVelocity = useSpring(scrollVelocity, { damping, stiffness });
   const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], { clamp: false });
 
-  const containerRef: any = useRef<HTMLDivElement>(null);
-  const copyWidth = useElementWidth(containerRef);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const copyWidth = useElementWidth(containerRef as React.RefObject<HTMLElement>);
 
   const x = useTransform(baseX, (v) => {
     if (!copyWidth) return "0px";

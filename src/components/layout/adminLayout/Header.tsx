@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { IconList } from '../../../utils/iconList';
 import { useLocation } from 'react-router-dom';
 import { getPageTitle } from '../../../constant/pageTitles';
-import { color, motion } from 'framer-motion';
-import HeaderActions from '../../ui/adminLayout/HeaderActions';
+import { motion } from 'framer-motion';
+// import HeaderActions from '../../ui/adminLayout/HeaderActions';
 import CustomMenu from '@/components/common/CustomMenu';
 
 interface IProps {
-    isCollapsed?: boolean;
+    // isCollapsed?: boolean;
     toggleDrawer?: () => void;
 }
 
@@ -18,7 +18,7 @@ const titleVariants = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
 };
 
-const Header: React.FC<IProps> = ({ isCollapsed, toggleDrawer }) => {
+const Header: React.FC<IProps> = ({ toggleDrawer }) => {
     const location = useLocation();
     const activePage = getPageTitle(location.pathname);
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);

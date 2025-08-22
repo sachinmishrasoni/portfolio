@@ -10,9 +10,9 @@ import { fetchProjects } from "@/store/features/projects/projectThunks"
 const PortfolioProjects = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const { projects, loading, error } = useSelector((state: RootState) => state.projects);
+  const { projects } = useSelector((state: RootState) => state.projects);
 
-  console.log(projects, 'projects');
+  // console.log(projects, 'projects');
 
   useEffect(() => {
     dispatch(fetchProjects());

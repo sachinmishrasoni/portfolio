@@ -6,14 +6,14 @@ import { alpha } from "@mui/system";
 interface CustomSelectProps extends Omit<SelectProps, "error"> {
     error?: boolean;
     errorMessage?: string;
-    prefixIcon?: React.ReactNode;
+    // prefixIcon?: React.ReactNode;
     options: { value: string | number; label: string }[];
 }
 
 const CustomSelect: React.FC<CustomSelectProps> = ({
     error,
     errorMessage = "",
-    prefixIcon,
+    // prefixIcon,
     options,
     ...props
 }) => {

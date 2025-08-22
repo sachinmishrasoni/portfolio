@@ -45,7 +45,7 @@ const SpotlightPaper = ({
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    background: (_theme: Theme) =>
+                    background: () =>
                         `radial-gradient(circle at var(--mouse-x) var(--mouse-y), 
             ${spotlightColor}, transparent 80%)`,
                     opacity: 0,

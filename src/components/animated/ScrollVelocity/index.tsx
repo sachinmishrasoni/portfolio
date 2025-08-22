@@ -83,8 +83,8 @@ function VelocityText({
     { clamp: false }
   );
 
-  const copyRef: any = useRef<HTMLSpanElement>(null);
-  const copyWidth = useElementWidth(copyRef);
+  const copyRef = useRef<HTMLSpanElement | null>(null);
+  const copyWidth = useElementWidth(copyRef as React.RefObject<HTMLElement>);
 
   function wrap(min: number, max: number, v: number) {
     const range = max - min;

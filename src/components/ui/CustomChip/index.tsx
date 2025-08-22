@@ -4,7 +4,7 @@ import { alpha, useTheme } from '@mui/material/styles';
 
 interface CustomChipProps {
     label: React.ReactNode;
-    icon: React.ComponentType<any>;
+    icon: React.ComponentType<{ size?: string | number; color?: string; className?: string; fontSize?: string; }>;
 }
 
 const CustomChip: React.FC<CustomChipProps> = ({ label, icon: IconComponent }) => {
