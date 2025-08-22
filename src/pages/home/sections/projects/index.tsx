@@ -1,4 +1,4 @@
-import { alpha, Box, Container, Grid2, Typography } from '@mui/material'
+import { alpha, Box, Chip, Container, Grid2, Stack, Typography } from '@mui/material'
 import SectionHeader from '@/components/ui/SectionHeader'
 import ProjectCard from '@/components/ui/ProjectCard'
 
@@ -15,6 +15,11 @@ const ProjectsSection = () => {
                 <Typography variant="body1" color="text.secondary" mt={2} sx={{ lineBreak: 'anywhere' }}>
                 Here are some of my full-stack projects, showcasing clean design, scalable backend solutions, and responsive interfaces. Take a look and explore the code or try them live!
                 </Typography>
+
+                <Stack direction="row" justifyContent={"center"} alignItems={"center"} gap={1}>
+                    <Chip label="Professional" color="primary" clickable/>
+                    <Chip label="Personal" variant='outlined' clickable color="primary" />
+                </Stack>
 
                 <Grid2 container spacing={2} mt={5}>
                     {

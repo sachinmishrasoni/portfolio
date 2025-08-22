@@ -132,7 +132,7 @@ const ProjectCard = ({ data }: any) => {
       <Box mt={1}>
         <Typography variant='h5' fontWeight={'bold'} color='text.primary'>{data?.projectName || "Project Name"}</Typography>
         <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
-          <Typography component={'p'} variant='caption' fontWeight={'bold'} color={'gray'}>{formatDate(data?.startDate) || "Date"}</Typography>
+          {/* <Typography component={'p'} variant='caption' fontWeight={'bold'} color={'gray'}>{formatDate(data?.startDate) || "Date"}</Typography> */}
           <Stack direction={'row'} gap={0.5} alignItems={'center'}>
             <GoDotFill color={data?.status === 'Completed' ? 'green' : 'red'} />
             <Typography variant='caption' color={'gray'}>{data?.status || "Status"}</Typography>
