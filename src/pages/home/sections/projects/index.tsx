@@ -25,7 +25,7 @@ const ProjectsSection = () => {
                     {
                         Array(6).fill('').map((_item, index) => (
                             <Grid2 key={index} size={{ xs: 12, sm: 6, md: 4, lg: 4 }}>
-                                <ProjectCard />
+                                <ProjectCard  />
                             </Grid2>
                         ))
                     }

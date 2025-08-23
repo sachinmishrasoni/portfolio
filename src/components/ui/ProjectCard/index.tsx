@@ -5,6 +5,7 @@ import CardSwiper from './CardSwiper'
 import { useEffect, useRef, useState } from 'react';
 import SpotlightPaper from '../SpotlightPaper';
 import { useNavigate } from 'react-router-dom';
+import { ProjectFormData } from '@/types/schemas/projectSchema';
 
 const techs = ['React', 'Nodejs', 'Material UI', 'TypeScript', 'Express', 'MongoDB'];
 
@@ -39,17 +40,17 @@ const DescriptionComponent: React.FC<DescriptionProps> = ({ htmlContent }) => {
 //   const date = new Date(dateString);
 //   return format(date, 'dd MMM yyyy'); // e.g., "16 Apr 2025"
 // };
-interface Project {
-  projectName: string;
-  status: "active" | "inactive" | "completed";
-  description: string;
-  technologies?: string[];
-  github?: string;
-  live?: string;
-}
+// interface Project {
+//   projectName: string;
+//   status: "active" | "inactive" | "completed";
+//   description: string;
+//   technologies?: string[];
+//   github?: string;
+//   live?: string;
+// }
 
 interface ProjectCardProps {
-  data: Project;
+  data?: ProjectFormData;
 }
 
 const ProjectCard = ({ data }: ProjectCardProps) => {
@@ -145,7 +146,7 @@ const ProjectCard = ({ data }: ProjectCardProps) => {
         <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
           {/* <Typography component={'p'} variant='caption' fontWeight={'bold'} color={'gray'}>{formatDate(data?.startDate) || "Date"}</Typography> */}
           <Stack direction={'row'} gap={0.5} alignItems={'center'}>
-            <GoDotFill color={data?.status === 'completed' ? 'green' : 'red'} />
+            <GoDotFill color={data?.status === 'Completed' ? 'green' : 'red'} />
             <Typography variant='caption' color={'gray'}>{data?.status || "Status"}</Typography>
           </Stack>
         </Stack>

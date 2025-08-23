@@ -33,7 +33,7 @@ const AdminLayout = () => {
                 }}
             >
                 <Header
-                    isCollapsed={isCollapsed}
+                    // isCollapsed={isCollapsed}
                     toggleDrawer={toggleDrawer}
                 />
 
