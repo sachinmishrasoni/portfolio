@@ -1,0 +1,24 @@
+/* Nick Name Css */
+.waviy {
+    position: relative;
+}
+
+.waviy span {
+    position: relative;
+    /* display: inline-block; */
+    /* font-size: 40px; */
+    /* color: #fff; */
+    /* text-transform: uppercase; */
+    letter-spacing: 2px;
+    font-variant: small-caps;
+    animation: flip 2s infinite;
+    animation-delay: calc(.2s * var(--i))
+}
+
+@keyframes flip {
+
+    0%,
+    80% {
+        transform: rotateY(360deg)
+    }
+}

@@ -1,10 +1,10 @@
 import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
-import ScrollToTop from '../ui/ScrollToTop'
+import ScrollToTop from '../../components/ui/ScrollToTop'
 import { Outlet } from 'react-router-dom'
 
-const Layout: React.FC<React.PropsWithChildren> = () => {
+const CommonLayout: React.FC<React.PropsWithChildren> = () => {
     return (
         <div style={{ position: 'relative' }}>
             <Header />
@@ -17,4 +17,4 @@ const Layout: React.FC<React.PropsWithChildren> = () => {
     )
 }
 
-export default Layout
+export default CommonLayout;

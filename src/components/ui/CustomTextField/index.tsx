@@ -29,7 +29,18 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({
                     borderRadius: "15px",
                     backgroundColor: (theme) => alpha(theme.palette.background.paper, 0.3),
                     backdropFilter: "blur(5px)",
+                    // padding: "0px 8px 8px 8px",
                 },
+                '& .MuiOutlinedInput-notchedOutline': {
+                    // border: "none",
+                },
+                '& .MuiOutlinedInput-input': {
+                    p: 1.6,
+                    pl: 0,
+                },
+                '& .MuiInputBase-root .MuiInputBase-inputMultiline': {
+                    p: 0
+                }
             }}
             slotProps={{
                 input: {

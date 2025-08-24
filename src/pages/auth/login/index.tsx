@@ -166,8 +166,9 @@ const Login = () => {
                     <Button
                         variant="contained"
                         type="submit"
-                        sx={{ borderRadius: 25 }}
+                        sx={{ borderRadius: 25, py: 1 }}
                         disabled={loading}
+                        loading={loading}
                     >
                         {loading ? 'Logging in...' : 'Login'}
                     </Button>

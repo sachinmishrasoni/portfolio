@@ -14,14 +14,28 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
             mode: mode,
             background: mode === 'dark'
                 ? { default: '#040D12', paper: '#040D12' }
-                : { default: '#FBFBFB', paper: '#F8FAFC' },
+                : { default: '#FBFBFB', paper: '#F2F2F2' },
             primary: {
-                main: '#BEADFA'
+                // main: '#C8A1E0',
+                main: '#732255'
             },
-            // text: {
-            //     primary: '#27374D',
-            //     secondary: '#4a5565'
+            secondary: {
+                main: '#F5F5F5'
+            },
+            success: {
+                main: '#08CB00'
+            },
+            error: {
+                main: '#FE4F2D'
+            },
+            // background: {
+            //     default: '#F5F5F5',
+            //     paper: '#F5F5F5'
             // },
+            text: {
+                primary: mode === 'dark' ? '#EFEFEF' : '#27374D',
+                // secondary: '#4a5565'
+            },
         },
         mixins: {
             toolbar: {
@@ -29,7 +43,17 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
             }
         },
         typography: {
-            fontFamily: ['roboto'].join(','),
+            // fontFamily: ['roboto'].join(','),
+            fontFamily: ['Mooli'].join(','),
+        },
+        components: {
+            MuiButton: {
+                styleOverrides: {
+                    root: {
+                        textTransform: 'none',
+                    }
+                }
+            }
         }
     })), [mode]);
     return (

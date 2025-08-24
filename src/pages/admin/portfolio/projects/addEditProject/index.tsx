@@ -238,6 +238,7 @@ const AddEditProject = () => {
                                 variant='outlined'
                                 color="error"
                                 startIcon={<IconList.close />}
+                                sx={{ px: 4 }}
                             >
                                 Cancel
                             </CustomButton>
@@ -247,6 +248,7 @@ const AddEditProject = () => {
                                 variant='contained'
                                 color="primary"
                                 startIcon={<IconList.save />}
+                                sx={{ px: 4 }}
                             >
                                 Save
                             </CustomButton>

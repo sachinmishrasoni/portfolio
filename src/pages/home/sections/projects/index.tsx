@@ -1,14 +1,11 @@
-import { alpha, Box, Chip, Container, Grid2, Stack, Typography } from '@mui/material'
+import { Chip, Container, Grid2, Stack, Typography } from '@mui/material'
 import SectionHeader from '@/components/ui/SectionHeader'
 import ProjectCard from '@/components/ui/ProjectCard'
+import SectionWrapper from '@/components/common/SectionWrapper'
 
 const ProjectsSection = () => {
     return (
-        <Box id="projects" data-section minHeight={'100vh'} position={'relative'} overflow={'hidden'}
-            sx={{
-                background: theme => `linear-gradient(90deg, ${alpha(theme.palette.primary.main, 0.1)} 0%, ${theme.palette.background.default} 50%, ${alpha(theme.palette.primary.main, 0.05)} 100%)`,
-            }}
-        >
+        <SectionWrapper id='projects'>
             <Container sx={{ py: 6 }}>
                 <SectionHeader title={'Projects'} subtitle={'My Work'} conunt={'04'} />
 
@@ -32,7 +29,7 @@ const ProjectsSection = () => {
 
                 </Grid2>
             </Container>
-        </Box>
+        </SectionWrapper>
     )
 }
 

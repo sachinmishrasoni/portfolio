@@ -10,7 +10,7 @@ const SidebarLogo: React.FC<SidebarLogoProps> = ({ isCollapsed, isMobile }) => {
     return (
         <Box
             width={"100%"} display="flex"
-            justifyContent={{ xs: "flex-start", md: "center" }}
+            justifyContent={{ xs: "center", md: "center" }}
             alignItems="center" gap={1}
             sx={{ overflow: "hidden" }}
         >

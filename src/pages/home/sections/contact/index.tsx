@@ -6,6 +6,7 @@ import ContactForm from './ContactForm'
 import { sendEmail, sendTelegram, sendWhatsApp } from '@/utils/socialHandlers'
 import { useDispatch } from 'react-redux'
 import { showToast } from '@/store/features/ui/uiSlice'
+import SectionWrapper from '@/components/common/SectionWrapper'
 
 const contactData = [
     {
@@ -49,11 +50,7 @@ const ContactSection = () => {
             });
     };
     return (
-        <Box id="contact" data-section width={'100%'} minHeight={'100vh'} position={'relative'} overflow={'hidden'}
-            sx={{
-                background: theme => `linear-gradient(90deg, ${alpha(theme.palette.primary.main, 0.1)} 0%, ${theme.palette.background.default} 50%, ${alpha(theme.palette.primary.main, 0.05)} 100%)`,
-            }}
-        >
+        <SectionWrapper id='contact'>
             <Container sx={{ py: 5 }}>
                 <SectionHeader title={'Contact me'} subtitle={'Way to'} conunt={'05'} />
 
@@ -153,7 +150,7 @@ const ContactSection = () => {
                     </Grid2>
                 </Grid2>
             </Container>
-        </Box>
+        </SectionWrapper>
     )
 }
 

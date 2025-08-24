@@ -26,7 +26,7 @@ import {
 } from 'react-icons/fa';
 import { IconList } from '../../utils/iconList';
 import { Outlet, useNavigate } from 'react-router-dom';
-import CustomButton from '../ui/CustomButton';
+import CustomButton from '../../components/ui/CustomButton';
 
 interface NavItem {
   text: string;

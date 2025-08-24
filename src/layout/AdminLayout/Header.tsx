@@ -1,11 +1,12 @@
 import { alpha, AppBar, Avatar, IconButton, Stack, Toolbar, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { IconList } from '../../../utils/iconList';
+import { IconList } from '../../utils/iconList';
 import { useLocation } from 'react-router-dom';
-import { getPageTitle } from '../../../constant/pageTitles';
+import { getPageTitle } from '../../constant/pageTitles';
 import { motion } from 'framer-motion';
 // import HeaderActions from '../../ui/adminLayout/HeaderActions';
 import CustomMenu from '@/components/common/CustomMenu';
+import ThemeToggleBtn from '@/components/ui/ThemeToggleBtn';
 
 interface IProps {
     // isCollapsed?: boolean;
@@ -70,14 +71,17 @@ const Header: React.FC<IProps> = ({ toggleDrawer }) => {
                 </Stack>
 
                 {/* <HeaderActions /> */}
-                <IconButton size='small' sx={{ p: 0 }} onClick={handleOpen}>
-                    <Avatar sx={{
-                        bgcolor: theme => alpha(theme.palette.primary.main, 0.3),
-                        color: theme => theme.palette.primary.dark,
-                        fontSize: 16,
-                        fontWeight: 'bold'
-                    }}>SM</Avatar>
-                </IconButton>
+                <Stack direction={'row'} alignItems={'center'} gap={1}>
+                    <ThemeToggleBtn />
+                    <IconButton size='small' sx={{ p: 0 }} onClick={handleOpen}>
+                        <Avatar sx={{
+                            bgcolor: theme => alpha(theme.palette.primary.main, 0.3),
+                            color: theme => theme.palette.primary.dark,
+                            fontSize: 16,
+                            fontWeight: 'bold'
+                        }}>SM</Avatar>
+                    </IconButton>
+                </Stack>
                 <CustomMenu
                     anchorEl={anchorEl}
                     open={Boolean(anchorEl)}

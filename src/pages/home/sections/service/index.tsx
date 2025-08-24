@@ -2,15 +2,12 @@ import { alpha, Box, Container, Grid2, Typography, useTheme } from '@mui/materia
 import servicesData from '@/data/services'
 import SectionHeader from '@/components/ui/SectionHeader'
 import SpotlightPaper from '@/components/ui/SpotlightPaper'
+import SectionWrapper from '@/components/common/SectionWrapper'
 
 const ServiceSection = () => {
     const theme = useTheme();
     return (
-        <Box id="service" data-section minHeight={'50vh'} position={'relative'} overflow={'hidden'}
-            sx={{
-                background: theme => `linear-gradient(90deg, ${alpha(theme.palette.primary.main, 0.1)} 0%, ${theme.palette.background.default} 50%, ${alpha(theme.palette.primary.main, 0.05)} 100%)`,
-            }}
-        >
+        <SectionWrapper id='services'>
             <Container sx={{ py: 6 }}>
                 <SectionHeader title={'My Services'} subtitle={'What I Offer'} conunt={'03'} />
 
@@ -62,7 +59,7 @@ const ServiceSection = () => {
                     }
                 </Grid2>
             </Container>
-        </Box>
+        </SectionWrapper>
     )
 }
 

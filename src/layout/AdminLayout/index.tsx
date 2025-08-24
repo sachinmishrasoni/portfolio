@@ -1,4 +1,4 @@
-import { alpha, Box, useMediaQuery, useTheme } from "@mui/material"
+import { Box, useMediaQuery, useTheme } from "@mui/material"
 import Header from "./Header"
 import { useState } from "react";
 import Sidebar from "./Sidebar";
@@ -16,7 +16,7 @@ const AdminLayout = () => {
     };
 
     const drawerWidth = isMobile ? 300 : isCollapsed ? 75 : 250;
-    
+
     return (
         <Box sx={{ display: 'flex', minHeight: '100vh' }}>
             <Sidebar
@@ -39,13 +39,13 @@ const AdminLayout = () => {
 
                 <Box component={'main'}
                     sx={{
-                        minHeight: 'calc(100vh - 60px)',
+                        minHeight: 'calc(100vh - 56px - 50px - 2px)',
                         p: 1.5,
                         px: { xs: 1.5, md: 2 },
-                        background: theme => `linear-gradient(90deg, 
-                                    ${alpha(theme.palette.primary.main, 0.1)} 0%, 
-                                    ${theme.palette.background.default} 50%, 
-                                    ${alpha(theme.palette.primary.main, 0.05)} 100%)`,
+                        // background: theme => `linear-gradient(90deg, 
+                        //             ${alpha(theme.palette.primary.main, 0.1)} 0%, 
+                        //             ${theme.palette.background.default} 50%, 
+                        //             ${alpha(theme.palette.primary.main, 0.05)} 100%)`,
                     }}
                 >
                     <Outlet />

@@ -1,18 +1,14 @@
-import { alpha, Box, Container, Grid2, Stack } from '@mui/material'
+import { Box, Container, Grid2, Stack } from '@mui/material'
 import AboutAvatar from '@/components/ui/AboutAvatar';
 import AboutMe from './AboutMe';
 import Experience from './Experience';
 import Education from './Education';
 import Skills from './Skills';
+import SectionWrapper from '@/components/common/SectionWrapper';
 
 const AboutSection = () => {
   return (
-    <Box id='about' data-section sx={{
-      minHeight: '100vh',
-      position: 'relative',
-      overflow: 'hidden',
-      background: theme => `linear-gradient(90deg, ${alpha(theme.palette.primary.main, 0.1)} 0%, ${theme.palette.background.default} 50%, ${alpha(theme.palette.primary.main, 0.05)} 100%)`,
-    }}>
+    <SectionWrapper id='about'>
       <Box sx={{ height: '100%', position: 'relative', zIndex: 1, backdropFilter: 'blur(1px)' }}>
         <Container sx={{ py: 10 }}>
           <Grid2 container spacing={2}>
@@ -74,7 +70,7 @@ const AboutSection = () => {
           opacity: 0.1,
         }}
       />
-    </Box>
+    </SectionWrapper>
   )
 }
 

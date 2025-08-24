@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, MenuItem, ListItemIcon, Typography, MenuProps } from '@mui/material';
+import { Menu, MenuItem, ListItemIcon, Typography, MenuProps, Grow } from '@mui/material';
 
 interface IMenuItem {
     text: string;
@@ -37,6 +37,7 @@ const CustomMenu: React.FC<CustomMenuProps> = ({
             onClose={onClose}
             anchorOrigin={anchorOrigin}
             transformOrigin={transformOrigin}
+            TransitionComponent={Grow}
             sx={{
                 '& .MuiMenu-paper': {
                     minWidth: 175,

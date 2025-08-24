@@ -44,7 +44,7 @@ const SocialMediaBtns = () => {
                                         transform: 'translate(-50%, -50%)',
                                         width: '0%',
                                         height: '0%',
-                                        backgroundColor: 'primary.light',
+                                        backgroundColor: 'primary.main',
                                         borderRadius: '50%',
                                         transition: '0.3s all ease-in',
                                         zIndex: 0

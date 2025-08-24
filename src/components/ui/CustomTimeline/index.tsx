@@ -4,13 +4,14 @@ import { FaCheck } from "react-icons/fa6";
 import EduExpCard from '../EduExpCard.tsx'
 import { ExpEduCardProps } from '../../../types/index.tsx';
 import { Button } from '@mui/material';
+import { IoIosArrowDown } from "react-icons/io";
 
 interface IProps {
     data: ExpEduCardProps[]
 }
 
 const CustomTimeline: React.FC<IProps> = ({ data }) => {
-    const [visibleItems, setVisibleItems] = useState(2);
+    const [visibleItems, setVisibleItems] = useState(3);
     const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
     const handleSeeMore = () => {
@@ -43,18 +44,18 @@ const CustomTimeline: React.FC<IProps> = ({ data }) => {
             {
                 data.slice(0, visibleItems).map((item, index) => (
                     <TimelineItem key={index}>
-                        <TimelineSeparator >
+                        <TimelineSeparator>
                             <TimelineDot
                                 sx={{
-                                    color: 'black',
-                                    backgroundColor: 'primary.main',
+                                    // color: 'black',
+                                    // backgroundColor: 'primary.main',
                                     //                         boxShadow: `1px 1px 5px ${theme.palette.mypresetcolor.highlightColor},
                                     // -1px -1px 5px ${theme.palette.mypresetcolor.highlightColor}`
                                 }} >
                                 <FaCheck size={50} />
                             </TimelineDot>
                             {/* {index < data.length - 1 && <TimelineConnector sx={{ bgcolor: 'primary.main' }} />} */}
-                            {index < visibleItems - 1 && <TimelineConnector sx={{ bgcolor: 'primary.main' }} />}
+                            {index < visibleItems - 1 && <TimelineConnector sx={{ bgcolor: 'primary.main', }} />}
                         </TimelineSeparator>
                         <TimelineContent>
                             <EduExpCard
@@ -75,9 +76,11 @@ const CustomTimeline: React.FC<IProps> = ({ data }) => {
                         borderRadius: 25,
                         alignSelf: 'center', // Center the button horizontally
                         mt: 2, // Margin top for spacing,
+                        px: 3,
                     }}
+                    endIcon={<IoIosArrowDown />}
                 >
-                    See more
+                    See ({data.length - visibleItems}) more
                 </Button>
             )}
         </Timeline>

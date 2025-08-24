@@ -1,4 +1,4 @@
-import { alpha, Box, Button, Container, Grid2, Stack, Typography, useTheme } from '@mui/material'
+import { Box, Button, Container, Grid2, Stack, Typography, useTheme } from '@mui/material'
 import computerCharPng from '/images/cartoonChar.png'
 import Particles from '@/components/animated/Particles'
 import ViewDownloadBtn from '@/components/ui/ViewDownloadBtn';
@@ -7,21 +7,13 @@ import Mouse from '@/components/animated/Mouse';
 import BlobDiv from '@/components/common/BlobDiv';
 import { hireMe } from '@/utils/common';
 import PortfolioHighlight from './PortfolioHighlight';
+import SectionWrapper from '@/components/common/SectionWrapper';
 // import blobDiv from '/svg/blobDiv.svg'
 
 const HeroSection = () => {
     const theme = useTheme();
     return (
-        <Box
-            id="home"
-            data-section
-            minHeight={'100vh'}
-            position={'relative'}
-            overflow={'hidden'}
-            sx={{
-                background: theme => `linear-gradient(90deg, ${alpha(theme.palette.primary.main, 0.1)} 0%, ${theme.palette.background.default} 50%, ${alpha(theme.palette.primary.main, 0.05)} 100%)`,
-            }}
-        >
+        <SectionWrapper id='home'>
 
             <Box sx={{
                 position: 'absolute',
@@ -182,7 +174,7 @@ const HeroSection = () => {
             }}>
                 <Mouse />
             </Box>
-        </Box>
+        </SectionWrapper>
     )
 }
 

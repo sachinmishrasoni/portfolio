@@ -1,6 +1,6 @@
 import { alpha, Box, Collapse, Drawer, List, ListItemButton, ListItemIcon, ListItemText, Menu, MenuItem, Tooltip, Typography } from '@mui/material';
 import React, { useState } from 'react'
-import { IconList } from '../../../utils/iconList';
+import { IconList } from '../../utils/iconList';
 import {
     FaBriefcase,
     FaCog,
@@ -9,7 +9,7 @@ import {
     FaAngleRight
 } from 'react-icons/fa';
 import { useLocation, useNavigate } from 'react-router-dom';
-import SidebarLogo from '../../ui/adminLayout/SidebarLogo';
+import SidebarLogo from '../../components/ui/adminLayout/SidebarLogo';
 
 interface SidebarProps {
     isCollapsed: boolean;
@@ -94,67 +94,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, isMobile, toggleDrawer, 
         { text: 'Settings', icon: <FaCog /> },
         { text: 'Logout', icon: <FaSignOutAlt />, path: '/auth/logout' },
     ];
-
-    // const renderNavItems = (items: NavItem[], depth: number = 0) => {
-    //     return items.map((item: NavItem) => (
-    //         <div key={item.text}>
-    //             <ListItemButton
-    //                 // onClick={() => item.children && handleSubMenuToggle(item.text)}
-    //                 onClick={() => {
-    //                     if (item.children) {
-    //                         handleSubMenuToggle(item.text);
-    //                     } else {
-    //                         handleNavigation(item.path);
-    //                     }
-    //                 }}
-    //                 sx={{
-    //                     // pl: isCollapsed ? 1.5 : depth * 2, // Remove padding when collapsed
-    //                     py: 0.5,
-    //                     justifyContent: isCollapsed ? 'center' : 'flex-start',
-    //                     gap: 2,
-    //                     borderRadius: '25px',
-    //                     '&:hover': {
-    //                         bgcolor: theme => alpha(theme.palette.primary.main, 0.1)
-    //                     }
-    //                 }}
-    //             >
-    //                 <Tooltip title={isCollapsed ? item.text : ''} placement="right" arrow>
-    //                     <ListItemIcon sx={{
-    //                         justifyContent: "center", // Always center the icon
-    //                         // width: isCollapsed ? miniDrawerWidth : 'auto', // Match drawer width when collapsed
-    //                         mx: isCollapsed ? 0 : "auto", // Center horizontally,
-    //                         minWidth: 'auto',
-    //                         color: 'primary.main',
-    //                         transition: 'all 0.3s ease-in'
-    //                     }}>
-    //                         {item.icon}
-    //                     </ListItemIcon>
-    //                 </Tooltip>
-    //                 <Collapse
-    //                     in={!isCollapsed}
-    //                     orientation="horizontal"
-    //                     sx={{ width: isCollapsed ? 0 : 'auto', flexGrow: 1 }}
-    //                 >
-    //                     <ListItemText primary={item.text} />
-    //                 </Collapse>
-    //                 {!isCollapsed && item.children && (
-    //                     <IconButton size="small" color='primary' disableRipple>
-    //                         {openSubMenus[item.text] ? <FaAngleDown /> : <FaAngleRight />}
-    //                     </IconButton>
-    //                 )}
-    //             </ListItemButton>
-
-    //             {item.children && (
-    //                 <Collapse in={openSubMenus[item.text]} timeout="auto" unmountOnExit>
-    //                     <List component="div" disablePadding>
-    //                         {renderNavItems(item.children, depth + 1)}
-    //                     </List>
-    //                 </Collapse>
-    //             )}
-    //         </div>
-    //     ));
-    // };
-
 
     const renderNavItems = (items: NavItem[], depth: number = 0) => {
         return items.map((item: NavItem) => {
@@ -260,14 +199,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, isMobile, toggleDrawer, 
                     // justifyContent: isCollapsed ? "center" : "flex-start",
                     justifyContent: 'center',
                     px: 2,
-                    borderBottom: "1px solid",
-                    borderColor: "grey.300",
+                    // borderBottom: "1px solid",
+                    // borderColor: "grey.300",
+                    borderBottom: '0.1px solid',
+                    borderColor: theme => alpha(theme.palette.primary.main, 0.5),
                 }}
             >
-
-
                 <SidebarLogo isCollapsed={isCollapsed} isMobile={isMobile} />
-
             </Box>
             <Box
                 component="main"

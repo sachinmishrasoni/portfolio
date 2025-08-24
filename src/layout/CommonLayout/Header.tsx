@@ -1,9 +1,10 @@
-import { alpha, AppBar, Avatar, Box, IconButton, List, ListItemButton, Stack, Toolbar, Typography } from '@mui/material';
+import { alpha, AppBar, Avatar, Box, IconButton, List, ListItemButton, Stack, Toolbar } from '@mui/material';
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import debounce from 'lodash/debounce';
 import { IconList } from '../../utils/iconList';
-import CustomMenu from '../common/CustomMenu';
-import ThemeToggleBtn from '../ui/ThemeToggleBtn';
+import CustomMenu from '../../components/common/CustomMenu';
+import ThemeToggleBtn from '../../components/ui/ThemeToggleBtn';
+import HeaderName from '@/components/HeaderName';
 
 // Define the type for menu items
 interface MenuItem {
@@ -22,7 +23,7 @@ interface IndicatorStyle {
 const menuItems: MenuItem[] = [
     { label: 'Home', link: '#home' },
     { label: 'About', link: '#about' },
-    { label: 'Service', link: '#service' },
+    { label: 'Services', link: '#services' },
     { label: 'Projects', link: '#projects' },
     { label: 'Contact', link: '#contact' },
 ];
@@ -204,13 +205,17 @@ const Header = () => {
                         p: 0,
                         margin: 0.5
                     }}>
-                        <Avatar src="/images/avatar.jpg"
+                        <Avatar
+                            src="/images/avatar_face.png"
+                            alt="avatar"
+
                             sx={{ minWidth: { xs: '50px', md: '45px' }, height: { xs: '50px', md: '45px' } }}
                         />
                     </IconButton>
-                    <Typography variant="h4" fontWeight="bold" >
+                    {/* <Typography variant="h4" fontWeight="bold" >
                         SAM
-                    </Typography>
+                    </Typography> */}
+                    <HeaderName />
                 </Stack>
 
                 <Box sx={{ position: 'relative' }}>
@@ -238,7 +243,7 @@ const Header = () => {
                                     sx={{
                                         color:
                                             activeSection === item.label.toLowerCase()
-                                                ? 'text.primary'
+                                                ? ''
                                                 : 'text.primary',
                                         fontWeight: 'bold',
                                         borderRadius: 25,
@@ -248,7 +253,7 @@ const Header = () => {
                                         '&:hover': {
                                             color:
                                                 activeSection === item.label.toLowerCase()
-                                                    ? 'text.primary'
+                                                    ? ''
                                                     : 'primary.main',
                                         },
                                     }}
@@ -274,7 +279,7 @@ const Header = () => {
 
                 <Stack direction="row" alignItems="center" gap={1}>
                     <ThemeToggleBtn />
-                    <IconButton onClick={handleOpen}>
+                    <IconButton onClick={handleOpen} sx={{ display: { xs: 'block', md: 'none' } }}>
                         <IconList.menuRight />
                     </IconButton>
                 </Stack>

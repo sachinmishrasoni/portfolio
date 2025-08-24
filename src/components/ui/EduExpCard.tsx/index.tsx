@@ -17,7 +17,8 @@ const EduExpCard = ({ data, isExpanded, onToggleExpand }: EduExpCardProps) => {
                 display: 'inline-block',
                 borderRadius: 5,
                 backgroundColor: 'primary.main',
-                color: 'primary.contrastText',
+                // color: 'primary.contrastText',
+                color: theme => alpha(theme.palette.primary.contrastText, 1),
                 transform: 'translateX(-50px)',
                 boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
             }}>
