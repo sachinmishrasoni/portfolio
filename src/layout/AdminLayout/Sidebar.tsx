@@ -119,7 +119,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, isMobile, toggleDrawer, 
                             py: 0.5,
                             justifyContent: isCollapsed ? 'center' : 'flex-start',
                             borderRadius: '25px',
-                            bgcolor: theme => isActive ? alpha(theme.palette.primary.main, 0.3) : 'transparent',
+                            bgcolor: theme => isActive ? alpha(theme.palette.primary.main, 0.2) : 'transparent',
+                            color: isActive ? 'primary.main' : '',
                             '&:hover': {
                                 bgcolor: theme => alpha(theme.palette.primary.main, 0.1)
                             }
@@ -131,7 +132,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, isMobile, toggleDrawer, 
                                 justifyContent: 'center', // Always center the icon
                                 width: isCollapsed ? miniDrawerWidth : 'auto', // Match drawer width when collapsed
                                 mx: 'auto', // Center horizontally,
-                                color: isActive ? 'primary.dark' : 'primary.main',
+                                color: isActive ? 'primary.main' : '',
                             }}>
                                 {item.icon}
                             </ListItemIcon>

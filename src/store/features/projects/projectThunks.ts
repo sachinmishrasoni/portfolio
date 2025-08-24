@@ -1,8 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getProjects, ProjectData } from "@/services/projectService";
+import { getProjects } from "@/services/projectService";
+import { IProjectProps } from "@/types/project";
 
 // Fetch all projects
-export const fetchProjects = createAsyncThunk<ProjectData[], void, { rejectValue: string }>(
+export const fetchProjects = createAsyncThunk<IProjectProps[], void, { rejectValue: string }>(
     "projects/fetchProjects",
     async (_, { rejectWithValue }) => {
         try {
@@ -15,7 +16,7 @@ export const fetchProjects = createAsyncThunk<ProjectData[], void, { rejectValue
     },
     {
         condition: (_, { getState }) => {
-            const { projects } = getState() as { projects: { loading: boolean; projects: ProjectData[] } };
+            const { projects } = getState() as { projects: { loading: boolean; projects: IProjectProps[] } };
             return !projects.loading && projects.projects.length === 0; // Only fetch if not loading and no projects
         },
     }

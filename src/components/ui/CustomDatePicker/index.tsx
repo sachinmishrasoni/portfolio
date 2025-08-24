@@ -56,6 +56,12 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
                             "& .MuiButtonBase-root": {
                                 color: "primary.main",
                             },
+                            "& .MuiOutlinedInput-input": {
+                                p: 1.6,
+                            },
+                            "& .MuiInputLabel-root": {
+                                lineHeight: 1
+                            }
                         },
                         InputProps: {
                             startAdornment: prefixIcon && (

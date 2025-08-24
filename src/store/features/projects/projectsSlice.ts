@@ -1,10 +1,11 @@
 // store/projectsSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchProjects } from "./projectThunks"; // Import thunk
-import { ProjectData } from "@/services/projectService";
+import { IProjectProps } from "@/types/project";
+
 
 interface ProjectsState {
-    projects: ProjectData[];
+    projects: IProjectProps[];
     loading: boolean;
     error: string | null;
 }
@@ -29,7 +30,7 @@ const projectsSlice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchProjects.fulfilled, (state, action: PayloadAction<ProjectData[]>) => {
+            .addCase(fetchProjects.fulfilled, (state, action: PayloadAction<IProjectProps[]>) => {
                 state.loading = false;
                 state.projects = action.payload;
             })

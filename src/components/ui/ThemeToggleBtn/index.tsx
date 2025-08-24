@@ -11,7 +11,7 @@ const ThemeToggleBtn = () => {
 
   return (
     <Tooltip arrow title={mode === 'dark' ? 'Light Mode' : 'Dark Mode'}>
-      <IconButton onClick={() => dispatch(toggleTheme())} sx={{ position: "relative", width: 40, height: 40 }}>
+      <IconButton onClick={() => dispatch(toggleTheme())} sx={{ position: "relative", width: 40, height: 40, color: 'primary.contrastText', }}>
         {/* Ensures consistent button size */}
         <Box sx={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", width: 24, height: 24 }}>
           <AnimatePresence mode="wait">

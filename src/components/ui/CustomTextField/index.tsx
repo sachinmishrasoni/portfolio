@@ -36,10 +36,16 @@ const CustomTextField: React.FC<CustomTextFieldProps> = ({
                 },
                 '& .MuiOutlinedInput-input': {
                     p: 1.6,
-                    pl: 0,
+                    // pl: 0,
+                },
+                '& .MuiInputAdornment-root': {
+                    mr: 0
                 },
                 '& .MuiInputBase-root .MuiInputBase-inputMultiline': {
                     p: 0
+                },
+                "& .MuiInputLabel-root": {
+                    lineHeight: 1
                 }
             }}
             slotProps={{

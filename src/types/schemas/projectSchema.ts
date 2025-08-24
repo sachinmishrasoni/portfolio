@@ -2,7 +2,7 @@ import * as z from 'zod';
 
 // Define validation schema with Zod
 export const projectSchema = z.object({
-    projectName: z.string().min(1, 'Project Name is required'),
+    title: z.string().min(1, 'Project Name is required'),
     startDate: z.date().nullable(),
     endDate: z.date().nullable().refine((val) => !val || (val >= new Date()), {
         message: 'End Date cannot be in the past',

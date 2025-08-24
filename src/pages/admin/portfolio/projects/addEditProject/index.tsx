@@ -32,7 +32,7 @@ const AddEditProject = () => {
     } = useForm<ProjectFormData>({
         resolver: zodResolver(projectSchema),
         defaultValues: {
-            projectName: '',
+            title: '',
             startDate: null,
             endDate: null,
             status: 'Ongoing' as const,
@@ -110,14 +110,15 @@ const AddEditProject = () => {
 
                     <Grid2 size={{ xs: 12, md: 6 }}>
                         <Controller
-                            name="projectName"
+                            name="title"
                             control={control}
                             render={({ field }) => (
                                 <CustomTextField
                                     {...field}
                                     placeholder="Project Name"
-                                    error={!!errors.projectName}
-                                    helperText={errors.projectName?.message}
+                                    label="Project Name"
+                                    error={!!errors.title}
+                                    helperText={errors.title?.message}
                                 />
                             )}
                         />
@@ -131,8 +132,8 @@ const AddEditProject = () => {
                                 <CustomSelect
                                     {...field}
                                     options={[
-                                        { value: 'Ongoing', label: 'Ongoing' },
-                                        { value: 'Completed', label: 'Completed' }
+                                        { value: 'ongoing', label: 'Ongoing' },
+                                        { value: 'completed', label: 'Completed' }
                                     ]}
                                     prefix="Status"
                                     error={!!errors.status}
@@ -181,6 +182,7 @@ const AddEditProject = () => {
                                 <CustomTextField
                                     {...field}
                                     placeholder="GitHub Link"
+                                    label="GitHub Link"
                                     error={!!errors.githubLink}
                                     helperText={errors.githubLink?.message}
                                 />
@@ -196,6 +198,7 @@ const AddEditProject = () => {
                                 <CustomTextField
                                     {...field}
                                     placeholder="Live Link"
+                                    label="Live Link"
                                     error={!!errors.liveLink}
                                     helperText={errors.liveLink?.message}
                                 />

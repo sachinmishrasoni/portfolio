@@ -44,11 +44,11 @@ const Header: React.FC<IProps> = ({ toggleDrawer }) => {
                 top: 0,
                 boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
                 backdropFilter: "blur(10px)",
-                background: (theme) =>
-                    `linear-gradient(175deg, ${alpha(theme.palette.primary.main, 0.4)} 0%, ${alpha(
-                        theme.palette.background.paper,
-                        0.5
-                    )} 50%, ${alpha(theme.palette.primary.main, 0.2)} 100%)`,
+                // background: (theme) =>
+                //     `linear-gradient(175deg, ${alpha(theme.palette.primary.main, 0.4)} 0%, ${alpha(
+                //         theme.palette.background.paper,
+                //         0.5
+                //     )} 50%, ${alpha(theme.palette.primary.main, 0.2)} 100%)`,
                 borderBottom: '0.1px solid',
                 borderColor: theme => alpha(theme.palette.primary.main, 0.5),
             }}
@@ -60,7 +60,7 @@ const Header: React.FC<IProps> = ({ toggleDrawer }) => {
                 justifyContent: "space-between"
             }}>
                 <Stack direction={'row'} alignItems={'center'} gap={1}>
-                    <IconButton onClick={toggleDrawer}>
+                    <IconButton onClick={toggleDrawer} sx={{ color: 'primary.contrastText' }}>
                         <IconList.menuLeft />
                     </IconButton>
 
@@ -75,10 +75,21 @@ const Header: React.FC<IProps> = ({ toggleDrawer }) => {
                     <ThemeToggleBtn />
                     <IconButton size='small' sx={{ p: 0 }} onClick={handleOpen}>
                         <Avatar sx={{
-                            bgcolor: theme => alpha(theme.palette.primary.main, 0.3),
+                            // bgcolor: theme => alpha(theme.palette.primary.main, 0.3),
                             color: theme => theme.palette.primary.dark,
+                            backgroundColor: theme => alpha(theme.palette.background.default, 1),
                             fontSize: 16,
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            "&::before": {
+                                content: "''",
+                                position: "absolute",
+                                top: 0,
+                                left: 0,
+                                width: "100%",
+                                height: "100%",
+                                backgroundColor: theme => alpha(theme.palette.primary.main, 0.3),
+                                borderRadius: "50%",
+                            }
                         }}>SM</Avatar>
                     </IconButton>
                 </Stack>

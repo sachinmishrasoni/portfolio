@@ -177,11 +177,12 @@ const Header = () => {
                     lg: '1200px',
                 },
                 mx: 'auto',
-                background: (theme) =>
-                    `linear-gradient(175deg, ${alpha(theme.palette.primary.main, 0.4)} 0%, ${alpha(
-                        theme.palette.background.paper,
-                        0.2
-                    )} 50%, ${alpha(theme.palette.primary.main, 0.2)} 100%)`,
+                // background: (theme) =>
+                //     `linear-gradient(175deg, ${alpha(theme.palette.primary.main, 0.4)} 0%, ${alpha(
+                //         theme.palette.background.paper,
+                //         0.2
+                //     )} 50%, ${alpha(theme.palette.primary.main, 0.2)} 100%)`,
+                background: theme => alpha(theme.palette.primary.main, 0.2),
                 borderRadius: '50px',
                 border: '0.1px solid',
                 borderColor: theme => alpha(theme.palette.primary.main, 0.5),
@@ -190,7 +191,7 @@ const Header = () => {
                 transform: 'translateX(-50%)',
                 transition: 'all 0.5s ease-in-out',
                 boxShadow: 'none',
-                backdropFilter: 'blur(10px)',
+                backdropFilter: 'blur(15px)',
                 pr: '0px !important',
             }}
         >
@@ -279,7 +280,7 @@ const Header = () => {
 
                 <Stack direction="row" alignItems="center" gap={1}>
                     <ThemeToggleBtn />
-                    <IconButton onClick={handleOpen} sx={{ display: { xs: 'block', md: 'none' } }}>
+                    <IconButton onClick={handleOpen} sx={{ color: 'primary.contrastText', display: { xs: 'block', md: 'none' } }}>
                         <IconList.menuRight />
                     </IconButton>
                 </Stack>

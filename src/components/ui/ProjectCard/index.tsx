@@ -5,7 +5,8 @@ import CardSwiper from './CardSwiper'
 import { useEffect, useRef, useState } from 'react';
 import SpotlightPaper from '../SpotlightPaper';
 import { useNavigate } from 'react-router-dom';
-import { ProjectFormData } from '@/types/schemas/projectSchema';
+// import { ProjectFormData } from '@/types/schemas/projectSchema';
+import { IProjectProps } from '@/types/project';
 
 const techs = ['React', 'Nodejs', 'Material UI', 'TypeScript', 'Express', 'MongoDB'];
 
@@ -21,7 +22,7 @@ interface DescriptionProps {
 const DescriptionComponent: React.FC<DescriptionProps> = ({ htmlContent }) => {
   return (
     <Typography
-      variant="body1"
+      variant="body2"
       color="text.secondary"
       sx={{
         display: '-webkit-box',
@@ -50,7 +51,7 @@ const DescriptionComponent: React.FC<DescriptionProps> = ({ htmlContent }) => {
 // }
 
 interface ProjectCardProps {
-  data?: ProjectFormData;
+  data?: IProjectProps;
 }
 
 const ProjectCard = ({ data }: ProjectCardProps) => {
@@ -142,11 +143,11 @@ const ProjectCard = ({ data }: ProjectCardProps) => {
         )
       }
       <Box mt={1}>
-        <Typography variant='h5' fontWeight={'bold'} color='text.primary'>{data?.projectName || "Project Name"}</Typography>
+        <Typography variant='h5' fontWeight={'bold'} color='text.primary'>{data?.title || "Project Name"}</Typography>
         <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
           {/* <Typography component={'p'} variant='caption' fontWeight={'bold'} color={'gray'}>{formatDate(data?.startDate) || "Date"}</Typography> */}
           <Stack direction={'row'} gap={0.5} alignItems={'center'}>
-            <GoDotFill color={data?.status === 'Completed' ? 'green' : 'red'} />
+            <GoDotFill color={data?.status === 'completed' ? 'green' : 'red'} />
             <Typography variant='caption' color={'gray'}>{data?.status || "Status"}</Typography>
           </Stack>
         </Stack>

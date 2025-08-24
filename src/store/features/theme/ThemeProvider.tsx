@@ -16,11 +16,11 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
                 ? { default: '#040D12', paper: '#040D12' }
                 : { default: '#FBFBFB', paper: '#F2F2F2' },
             primary: {
-                // main: '#C8A1E0',
-                main: '#732255'
+                main: '#C8A1E0',
+                // main: '#732255'
             },
             secondary: {
-                main: '#F5F5F5'
+                main: '#FF7F3E'
             },
             success: {
                 main: '#08CB00'

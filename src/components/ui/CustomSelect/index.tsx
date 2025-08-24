@@ -27,11 +27,14 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
                         // borderRadius: "15px",
                     },
                     "& .MuiSelect-select": {
-                        // padding: "8.5px 14px",
+                        p: 1.6,
                         borderRadius: "15px",
                         backgroundColor: (theme) => alpha(theme.palette.background.paper, 0.3),
                         backdropFilter: "blur(5px)",
                     },
+                    "& .MuiInputLabel-root": {
+                        lineHeight: 1
+                    }
                 }}
                 // Fix: Use InputProps instead of inputProps
                 // inputProps={{
